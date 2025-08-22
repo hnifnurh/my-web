@@ -6,13 +6,24 @@ import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 export default function Home() {
   return (
     <main className="relative flex flex-col justify-center min-h-screen mx-20 px-2">
-      <img
-        className="h-48 w-full object-cover object-[26%_46%]"
-        src="/images/hanif.JPG"
-      />
-      <div className="relative w-5/6 flex flex-col py-10 text-xl">
+      <div className="relative h-48 w-full">
+        <img
+          className="h-48 w-full object-cover object-[26%_46%]"
+          src="/images/hanif.JPG"
+          alt="hanif"
+        />
+
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img
+            src="/icons/logo-white.svg" 
+            alt="logo"
+            className="h-20 w-20" 
+          />
+        </div>
+      </div>
+
+      <div className="relative w-5/6 flex flex-col py-16 text-lg">
         <div className="home-work">
-          <h1>home<sup>(01)</sup></h1>
           <p>hanif is a designer and digital creative who has worked on a variety of projects, from independent explorations to collaborative productions. His works move between visual and digital spaces, taking shape in graphic design, photography, post-production, front-end development, mobile development, and UI/UX design.</p>
           <br />
         </div>

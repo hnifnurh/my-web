@@ -36,7 +36,6 @@ const Menu = () => {
           </span>
         </div>
 
-        {/* Links */}
         <div className="menu-list flex items-center gap-1 flex-col py-10 sm:px-10 px-5">
           {menuLinks.map((link, index) => (
             <div className="menu-link-item" key={index}>
@@ -58,7 +57,7 @@ const Menu = () => {
           ))}
         </div>
       </div>
-      {/* Back button */}
+
       <div className="text-sm">
         <BoringButton
           title="back"
