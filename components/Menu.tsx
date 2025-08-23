@@ -5,7 +5,6 @@ import Link from "next/link";
 import BoringButton from "./ui/BoringButton";
 import { IoMdArrowBack } from "react-icons/io";
 import { motion } from "framer-motion";
-import { easeInOut } from "framer-motion";
 
 const menuLinks = [
   { label: "home", href: "/", external: false },

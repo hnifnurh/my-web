@@ -1,11 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import Menu from "@/components/Menu";
 import BoringButton from "@/components/ui/BoringButton";
-import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
-import { motion, AnimatePresence } from "framer-motion";
+import { IoMdArrowForward } from "react-icons/io";
 import Un from "@/components/utils/Underline";
 import ULink from "@/components/utils/UnderLink";
 
