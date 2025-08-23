@@ -5,6 +5,7 @@ import Link from "next/link";
 import BoringButton from "./ui/BoringButton";
 import { IoMdArrowBack } from "react-icons/io";
 import { motion } from "framer-motion";
+import { easeInOut } from "framer-motion";
 
 const menuLinks = [
   { label: "home", href: "/", external: false },
@@ -17,55 +18,115 @@ const menuLinks = [
   { label: "linkedin", href: "https://www.linkedin.com/in/hanifnurh/", external: true },
 ];
 
-const Menu = () => {
-  const container = useRef<HTMLDivElement>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+interface MenuProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+const transition = {
+  duration: 1,
+  ease: [.25,.1,.25,1] as unknown as any,
+};
+
+const blur1 = {
+  hidden: { filter: "blur(1px)", y: 20, opacity: 0 },
+  visible: { filter: "blur(0px)", y: 0, opacity: 1 },
+};
+
+const fadeInSmooth = {
+  hidden: { opacity: 0, y: 0 }, 
+  visible: { opacity: 2, y: 0 },
+};
+
+const Menu = ({ isOpen, onClose }: MenuProps) => {
+  const container = useRef<HTMLDivElement>(null);
+
+  if (!isOpen) return null;
+
+  const handleLinkClick = (href: string, external: boolean) => {
+    if (!external) {
+      setTimeout(() => {
+        onClose();
+      }, 100);
+    }
+  };
 
   return (
-    <nav className="flex flex-col justify-center min-h-screen mx-20 px-2" ref={container}>
-      <div className="relative flex items-center flex-col overflow-hidden sm:px-10 px-5">
-        {/* Logo */}
-        <div className="menu-logo flex items-center gap-2">
-          <div className="logo-image">
-            {/* logohere */}
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      transition={{ duration: 1, ease: "easeOut" }}
+    >
+      <motion.nav 
+        className="backdrop-blur background-transparent flex flex-start flex-col justify-between min-h-screen px-20 py-20" 
+        ref={container} 
+        variants={fadeInSmooth}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 1.1 }}
+      >
+        <motion.div 
+          className="flex-1 flex flex-col justify-center items-center pb-16 sm:px-10 px-5"
+          transition={transition} 
+          variants={blur1}
+        >
+          <div className="relative flex flex-col items-center gap-2">
+            <img
+              src="/icons/logo-white.svg" 
+              alt="logo"
+              className="h-20 w-20" 
+            />
+            <span className="text-lg text-white">
+              fellthriver - hanif's personal website
+            </span>
           </div>
-          <span className="">
-            fellthriver - hanif's personal website
-          </span>
-        </div>
 
-        <div className="menu-list flex items-center gap-1 flex-col py-10 sm:px-10 px-5">
-          {menuLinks.map((link, index) => (
-            <div className="menu-link-item" key={index}>
-              {link.external ? (
-                <a
-                  href={link.href}
-                  className="menu-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link href={link.href} className="menu-link">
-                  {link.label}
-                </Link>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+          <div className="relative flex flex-col items-center py-10 text-sm sm:px-10 px-5">
+            {menuLinks.map((link, index) => {
+              const baseClass =
+                "inline-flex items-center px-1 py-1 text-black bg-transparent border border-transparent hover:bg-black hover:text-white transition-colors";
 
-      <div className="text-sm">
-        <BoringButton
-          title="back"
-          icon={<IoMdArrowBack />}
-          position="left"
-        />
-      </div>
-    </nav>
+              return (
+                <div className="menu-link-item" key={index}>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      className={baseClass}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link 
+                      href={link.href} 
+                      className={baseClass}
+                      onClick={() => handleLinkClick(link.href, link.external)}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        <motion.div 
+          className="text-sm"
+          variants={blur1}
+          transition={{ duration: 1.3 }}
+        >
+          <div onClick={onClose} style={{ cursor: 'pointer' }}>
+            <BoringButton
+              title="back"
+              icon={<IoMdArrowBack />}
+              position="left"
+            />
+          </div>
+        </motion.div>
+      </motion.nav>
+    </motion.div>
   );
 };
 
