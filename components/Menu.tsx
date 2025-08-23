@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import BoringButton from "./ui/BoringButton";
 import { IoMdArrowBack } from "react-icons/io";
@@ -57,7 +57,7 @@ const Menu = ({ isOpen, onClose }: MenuProps) => {
       transition={{ duration: 1, ease: "easeOut" }}
     >
       <motion.nav 
-        className="backdrop-blur-lg background-transparent flex flex-start flex-col justify-between min-h-screen px-20 py-20" 
+        className="backdrop-blur background-transparent flex flex-start flex-col justify-between min-h-screen px-20 py-20" 
         ref={container} 
         variants={fadeInSmooth}
         initial="hidden"
