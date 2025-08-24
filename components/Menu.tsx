@@ -55,10 +55,13 @@ const Menu = ({ isOpen, onClose }: MenuProps) => {
     <motion.div
       initial="hidden"
       animate="visible"
+      exit="hidden"
       transition={{ duration: 1, ease: "easeOut" }}
+      variants={fadeInSmooth}
+      className="fixed inset-0 z-50 backdrop-blur-md"
     >
       <motion.nav 
-        className="backdrop-blur background-transparent flex flex-start flex-col justify-between min-h-screen px-20 py-20" 
+        className="min-h-screen flex flex-start flex-col justify-between px-20 py-20" 
         ref={container} 
         variants={fadeInSmooth}
         initial="hidden"
