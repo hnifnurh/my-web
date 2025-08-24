@@ -22,7 +22,7 @@ export default function ComingSoon() {
 
   return (
     <>
-      <main className="theme-light min-h-screen flex flex-col justify-between items-center px-6 py-6 lg:px-20 lg:py-16">
+      <main className="min-h-screen flex flex-col justify-between items-center px-6 py-6 lg:px-20 lg:py-16">
         
         <div className="flex flex-1 flex-col justify-center items-center space-y-6">
           <img

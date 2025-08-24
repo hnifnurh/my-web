@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="min-h-screen h-auto flex flex-start flex-col justify-between px-12 py-12 lg:px-20 lg:py-16">
+      <main className="min-h-screen h-auto flex flex-start flex-col justify-between px-6 py-6 lg:px-20 lg:py-16">
         <div className="flex-1 flex flex-col justify-center w-full">
           <div className="relative h-48 w-full">
             <img
@@ -40,7 +40,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative w-5/6 flex flex-col py-10 text-lg space-y-6">
+          <div className="relative w-[90%] md:w-5/6 flex flex-col py-10 text-lg space-y-6">
             <p>
               hanif is a designer and digital creative who has worked on a variety of projects, from independent explorations to collaborative productions. His works move between visual and digital spaces, taking shape in graphic design, photography, post-production, <Un>front-end development</Un>, mobile development, and <Un>UI/UX</Un> design.
             </p>
@@ -69,7 +69,7 @@ export default function Home() {
           </div>
         </div>
           
-        <div className="flex flex-col items-end space-y-3 text-sm">
+        <div className="flex flex-col items-end space-y-3 text-sm ml-auto">
           <div onClick={handleShowMenu} style={{ cursor: 'pointer' }}>
             <BoringButton
               title="more info"
