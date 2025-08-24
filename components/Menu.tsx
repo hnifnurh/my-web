@@ -6,6 +6,7 @@ import Link from "next/link";
 import BoringButton from "./ui/BoringButton";
 import { IoMdArrowBack } from "react-icons/io";
 import { motion } from "framer-motion";
+import { cubicBezier } from "framer-motion";
 
 const menuLinks = [
   { label: "home", href: "/", external: false },
@@ -25,7 +26,7 @@ interface MenuProps {
 
 const transition = {
   duration: 1,
-  ease: [.25,.1,.25,1] as unknown as any,
+  ease: cubicBezier(0.25, 0.1, 0.25, 1),
 };
 
 const blur1 = {
@@ -79,7 +80,7 @@ const Menu = ({ isOpen, onClose }: MenuProps) => {
                 height={80}
               />
             <span className="text-lg text-white">
-              fellthriver - hanif's personal website
+              fellthriver - hanif&apos;s personal website
             </span>
           </div>
 
