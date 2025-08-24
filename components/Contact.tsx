@@ -25,7 +25,7 @@ export default function ComingSoon() {
                 />
             </div>
 
-            <div className="flex-1 flex flex-col items-start justify-start pt-14 gap-8">
+            <div className="flex-1 flex flex-col items-start justify-start text-sm lg:text-lg pt-14 gap-8">
                 <p>
                 Contact / Inquires <br />
                 this place that you want to contact me sometimes
