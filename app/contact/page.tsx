@@ -35,7 +35,6 @@ export default function Contact() {
         <p>© 2025 hanif, all rights reserved.</p>
       </div>
 
-      {/* Render Menu kalau terbuka */}
       {isMenuOpen && <Menu isOpen={isMenuOpen} onClose={handleCloseMenu} />}
     </div>
   );

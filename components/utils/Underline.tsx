@@ -3,7 +3,7 @@ import React from "react";
 
 interface UnderlineProps {
   children: React.ReactNode;
-  className?: string; // biar bisa custom styling tambahan
+  className?: string;
 }
 
 const Underline: React.FC<UnderlineProps> = ({ children, className }) => {
