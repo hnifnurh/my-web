@@ -1,7 +1,8 @@
 "use client";
 
-import ComingSoon from "@/components/ComingSoon";
+import Contact from "@/components/Contact";
 
-export default function Contact() {
- return <ComingSoon />
+
+export default function ContactPage() {
+ return <Contact />
 }

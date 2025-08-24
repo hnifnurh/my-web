@@ -9,17 +9,6 @@ import BLink  from "@/components/utils/BorderLink";
 export default function ComingSoon() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleShowMenu = () => {
-    console.log("Menu opening..."); 
-    setIsMenuOpen(true);
-  };
-
-  const handleCloseMenu = () => {
-    console.log("Menu closing..."); 
-    setIsMenuOpen(false);
-  };
-
-
   return (
     <>
       <main className="min-h-screen flex flex-col justify-between items-center px-6 py-6 lg:px-20 lg:py-16">
@@ -34,15 +23,19 @@ export default function ComingSoon() {
         </div>
 
         {/* Footer */}
-        <div className="flex flex-col items-end space-y-3 text-sm ml-auto">
-          <div onClick={handleShowMenu} style={{ cursor: 'pointer' }}>
+        <div className="flex flex-col space-y-3 text-sm w-full">
+          <div 
+          onClick={() => setIsMenuOpen(true)} 
+          style={{ cursor: 'pointer' }}
+          className="flex justify-end w-full"
+          >
             <BoringButton
               title="more info"
               icon={<IoMdArrowForward />}
               position="right"
             />
           </div>
-          <p>© 2025 hanif, all rights reserved.</p>
+          <p className="text-center lg:text-right">© 2025 hanif, all rights reserved.</p>
         </div>
         
       </main>
