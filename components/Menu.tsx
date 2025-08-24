@@ -80,7 +80,7 @@ const Menu = ({ isOpen, onClose }: MenuProps) => {
                 height={80}
               />
             <span className="text-lg text-white">
-              fellthriver - hanif&apos;s personal website
+              fellthriver - hanifs personal website
             </span>
           </div>
 
