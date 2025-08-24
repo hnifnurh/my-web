@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="min-h-screen h-auto flex flex-start flex-col justify-between px-20 py-10">
+      <main className="min-h-screen h-auto flex flex-start flex-col justify-between px-8 py-10 lg:px-20 lg:py-16">
         <div className="flex-1 flex flex-col justify-center w-full">
           <div className="relative h-48 w-full">
             <img
