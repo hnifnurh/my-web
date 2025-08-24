@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useRef } from "react";
 import Link from "next/link";
 import BoringButton from "./ui/BoringButton";
@@ -70,11 +71,13 @@ const Menu = ({ isOpen, onClose }: MenuProps) => {
           variants={blur1}
         >
           <div className="relative flex flex-col items-center gap-2">
-            <img
-              src="/icons/logo-white.svg" 
-              alt="logo"
-              className="h-20 w-20" 
-            />
+              <Image
+                src="/icons/logo-white.svg"
+                alt="logo"
+                className="h-20 w-20"
+                width={80}
+                height={80}
+              />
             <span className="text-lg text-white">
               fellthriver - hanif's personal website
             </span>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Menu from "@/components/Menu";
 import BoringButton from "@/components/ui/BoringButton";
@@ -25,17 +26,21 @@ export default function Home() {
       <main className="fixed flex flex-start flex-col justify-between min-h-screen px-20 py-20">
         <div className="flex-1 flex flex-col justify-center w-full">
           <div className="relative h-48 w-full">
-            <img
+            <Image
               className="h-48 w-full object-cover object-[26%_46%]"
               src="/images/hanif.JPG"
               alt="hanif"
+              width={4000}
+              height={6000}
             />
 
             <div className="absolute inset-0 flex items-center justify-center">
-              <img
-                src="/icons/logo-white.svg" 
+              <Image
+                src="/icons/logo-white.svg"
                 alt="logo"
-                className="h-20 w-20" 
+                className="h-20 w-20"
+                width={80}
+                height={80}
               />
             </div>
           </div>
