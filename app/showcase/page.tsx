@@ -1,13 +1,8 @@
+import ComingSoon from '@/components/ComingSoon'
 import React from 'react'
 
 const page = () => {
-  return (
-    <div className="page-content">
-        <h1>
-        showcase<sup>(02)</sup>
-        </h1>
-    </div>
-  )
+  return <ComingSoon />
 }
 
 export default page

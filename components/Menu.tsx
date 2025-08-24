@@ -69,17 +69,17 @@ const Menu = ({ isOpen, onClose }: MenuProps) => {
         transition={{ duration: 1.1 }}
       >
         <motion.div 
-          className="flex-1 flex flex-col justify-center items-center pb-16 sm:px-10 px-5"
+          className="flex-1 flex mix-blend-difference flex-col justify-center items-center pb-16 sm:px-10 px-5"
           transition={transition} 
           variants={blur1}
         >
           <div className="relative flex flex-col items-center gap-2">
             <img
-              src="/icons/logo-white.svg" 
+              src="/icons/logo-black.svg" 
               alt="logo"
-              className="h-20 w-20" 
+              className="h:16 w-16 lg:h-20 lg:w-20" 
             />
-            <span className="text-lg text-white">
+            <span className="text-sm text-center lg:text-xl">
               fellthriver - hanifs personal website
             </span>
           </div>

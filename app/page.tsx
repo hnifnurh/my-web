@@ -22,12 +22,12 @@ export default function Home() {
 
   return (
     <>
-      <main className="min-h-screen h-auto flex flex-start flex-col justify-between px-8 py-10 lg:px-20 lg:py-16">
+      <main className="min-h-screen h-auto flex flex-start flex-col justify-between px-12 py-12 lg:px-20 lg:py-16">
         <div className="flex-1 flex flex-col justify-center w-full">
           <div className="relative h-48 w-full">
             <img
               className="h-48 w-full object-cover object-[26%_46%]"
-              src="/images/hanif.JPG"
+              src="/images/hanif.webp"
               alt="hanif"
             />
 
@@ -35,7 +35,7 @@ export default function Home() {
               <img
                 src="/icons/logo-white.svg" 
                 alt="logo"
-                className="h-20 w-20" 
+                className="h:16 w-16 lg:h-20 lg:w-20" 
               /> 
             </div>
           </div>
