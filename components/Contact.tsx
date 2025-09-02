@@ -6,8 +6,6 @@ import Menu from "@/components/Menu";
 import  BLink  from "@/components/ui/BorderLink";
 import FooterNav from "./ui/FooterNav";
 
-
-
 export default function ComingSoon() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const router = useRouter(); 
