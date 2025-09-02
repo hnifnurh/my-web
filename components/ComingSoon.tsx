@@ -11,7 +11,7 @@ export default function ComingSoon() {
 
   return (
     <>
-      <main className="min-h-screen flex flex-col justify-between items-center px-6 py-6 lg:px-20 lg:py-16">
+      <main className="min-h-screen flex flex-col justify-between items-center bg-[#FEFEFE] px-6 py-6 lg:px-20 lg:py-16">
         
         <div className="flex flex-1 flex-col justify-center items-center space-y-6">
           <img
@@ -33,6 +33,7 @@ export default function ComingSoon() {
               title="more info"
               icon={<IoMdArrowForward />}
               position="right"
+              variant="light"
             />
           </div>
           <p className="text-center lg:text-right">© 2025 hanif, all rights reserved.</p>

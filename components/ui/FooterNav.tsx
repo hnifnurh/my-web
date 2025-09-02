@@ -34,7 +34,15 @@ export default function FooterNav({ setIsMenuOpen, variant = "auto" }: FooterNav
         </div>
       </div>
 
-      <p className="text-center lg:text-right">
+      <p
+        className={`text-center lg:text-right ${
+          variant === "dark"
+            ? "text-white"
+            : variant === "light"
+            ? "text-black"
+            : "text-[var(--foreground)]"
+        }`}
+      >
         © 2025 hanif, all rights reserved.
       </p>
     </div>
