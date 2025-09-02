@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { IoMdArrowForward } from "react-icons/io";
-import { IoMdArrowBack } from "react-icons/io";
-import BoringButton from "@/components/ui/BoringButton";
 import Menu from "@/components/Menu";
-import  BLink  from "@/components/utils/BorderLink";
+import  BLink  from "@/components/ui/BorderLink";
+import FooterNav from "./ui/FooterNav";
 
 
 
@@ -16,7 +14,7 @@ export default function ComingSoon() {
 
     return (
         <>
-        <main className="relative min-h-screen flex flex-col justify-between px-6 py-6 lg:px-20 lg:py-16">
+        <main className="relative min-h-screen flex flex-col justify-between bg-[#FEFEFE] px-6 py-6 lg:px-20 lg:py-16">
             <div className="flex justify-start items-start">
                 <img
                 src="/icons/logo-black.svg"
@@ -44,25 +42,7 @@ export default function ComingSoon() {
             </div>
 
             <div className="flex flex-col space-y-3 text-sm w-full">
-                <div className="flex justify-between w-full">
-                    <div onClick={() => router.push("/")} style={{ cursor: "pointer" }}>
-                        <BoringButton
-                        title="back"
-                        icon={<IoMdArrowBack />}
-                        position="left"
-                        />
-                    </div>
-
-                    <div onClick={() => setIsMenuOpen(true)} style={{ cursor: "pointer" }}>
-                        <BoringButton
-                        title="more info"
-                        icon={<IoMdArrowForward />}
-                        position="right"
-                        />
-                    </div>
-                </div>
-
-                <p className="text-center lg:text-right">© 2025 hanif, all rights reserved.</p>
+                <FooterNav setIsMenuOpen={setIsMenuOpen} variant="light"/>
             </div>
         </main>
 

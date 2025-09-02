@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import BoringButton from "./ui/BoringButton";
 import { IoMdArrowBack } from "react-icons/io";
@@ -40,6 +40,36 @@ const fadeInSmooth = {
 
 const Menu = ({ isOpen, onClose }: MenuProps) => {
   const container = useRef<HTMLDivElement>(null);
+  const [isDarkBackground, setIsDarkBackground] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      // Detect background theme when menu opens
+      const detectBackgroundTheme = () => {
+        const main = document.querySelector('main');
+        if (main) {
+          const computedStyle = window.getComputedStyle(main);
+          const backgroundColor = computedStyle.backgroundColor;
+          
+          // Check if background color is dark
+          if (backgroundColor.includes('rgb')) {
+            const rgb = backgroundColor.match(/\d+/g);
+            if (rgb) {
+              const [r, g, b] = rgb.map(Number);
+              const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+              setIsDarkBackground(brightness < 128);
+            }
+          } else {
+            // Fallback: check background color classes or hex values
+            const bgClass = main.className;
+            setIsDarkBackground(bgClass.includes('#1A1C20') || bgClass.includes('bg-[#1A1C20]'));
+          }
+        }
+      };
+
+      detectBackgroundTheme();
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -50,6 +80,14 @@ const Menu = ({ isOpen, onClose }: MenuProps) => {
       }, 100);
     }
   };
+
+  // Dynamic classes based on detected background
+  const textColor = isDarkBackground ? "text-white" : "text-black";
+  const logoSrc = isDarkBackground ? "/icons/logo-white.svg" : "/icons/logo-black.svg";
+  const baseClass = isDarkBackground 
+    ? "inline-flex items-center px-1 py-1 text-white bg-transparent border border-transparent hover:bg-white hover:text-black transition-colors"
+    : "inline-flex items-center px-1 py-1 text-black bg-transparent border border-transparent hover:bg-black hover:text-white transition-colors";
+  const buttonVariant = isDarkBackground ? "dark" : "light";
 
   return (
     <motion.div
@@ -75,20 +113,17 @@ const Menu = ({ isOpen, onClose }: MenuProps) => {
         >
           <div className="relative flex flex-col items-center gap-2">
             <img
-              src="/icons/logo-black.svg" 
+              src={logoSrc} 
               alt="logo"
               className="h:16 w-16 lg:h-20 lg:w-20" 
             />
-            <span className="text-sm text-center lg:text-xl">
+            <span className={`text-sm text-center lg:text-xl ${textColor}`}>
               fellthriver - hanifs personal website
             </span>
           </div>
 
           <div className="relative flex flex-col items-center py-10 text-sm sm:px-10 px-5">
             {menuLinks.map((link, index) => {
-              const baseClass =
-                "inline-flex items-center px-1 py-1 text-black bg-transparent border border-transparent hover:bg-black hover:text-white transition-colors";
-
               return (
                 <div className="menu-link-item" key={index}>
                   {link.external ? (
@@ -125,6 +160,7 @@ const Menu = ({ isOpen, onClose }: MenuProps) => {
               title="back"
               icon={<IoMdArrowBack />}
               position="left"
+              variant={buttonVariant}
             />
           </div>
         </motion.div>

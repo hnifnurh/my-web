@@ -4,15 +4,15 @@ import { useState } from "react";
 import Menu from "@/components/Menu";
 import BoringButton from "@/components/ui/BoringButton";
 import { IoMdArrowForward } from "react-icons/io";
-import Un from "@/components/utils/Underline";
-import ULink from "@/components/utils/UnderLink";
+import Un from "@/components/ui/Underline";
+import ULink from "@/components/ui/UnderLink";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   return (
     <>
-      <main className="min-h-screen h-auto flex flex-start flex-col justify-between px-8 py-20 lg:px-20 lg:py-16">
+      <main className="min-h-screen h-auto flex flex-start flex-col justify-between bg-[#FEFEFE] px-8 py-20 lg:px-20 lg:py-16">
         <div className="flex-1 flex flex-col justify-center w-full">
           <div className="relative h-48 w-full">
             <img
@@ -69,6 +69,7 @@ export default function Home() {
               title="more info"
               icon={<IoMdArrowForward />}
               position="right"
+              variant="light"
             />
           </div>
           <p className="text-center lg:text-right">© 2025 hanif, all rights reserved.</p>

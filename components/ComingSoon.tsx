@@ -4,7 +4,7 @@ import { useState } from "react";
 import Menu from "@/components/Menu";
 import BoringButton from "@/components/ui/BoringButton";
 import { IoMdArrowForward } from "react-icons/io";
-import BLink  from "@/components/utils/BorderLink";
+import BLink  from "@/components/ui/BorderLink";
 
 export default function ComingSoon() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
