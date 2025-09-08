@@ -205,8 +205,8 @@ export const projectsData: Project[] = [
     imageUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEw1ULAbORnhzPFs2dYXxDo0JZuTW65i8crQKA", 
     videoUrl: null,
     techStack: [
-      { name: "Premiere Pro", url: "/icons/pr.svg" },
-      { name: "After Effects", url: "/icons/ae.svg" },
+      { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
+      { name: "After Effects", url: "/icons/adobe-aftereffects.png" },
     ],
     linkUrl:
       "https://kampung-budaya.vercel.app/",
@@ -220,8 +220,8 @@ export const projectsData: Project[] = [
     imageUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEkOFbYPq7BXD8kaJIWLHu591ivjbYU3A6Kd0N", 
     videoUrl: null,
     techStack: [
-      { name: "Premiere Pro", url: "/icons/pr.svg" },
-      { name: "After Effects", url: "/icons/ae.svg" },
+      { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
+      { name: "After Effects", url: "/icons/adobe-aftereffects.png" },
     ],
     linkUrl:
       "https://rajabrawijaya.ub.ac.id/",
@@ -235,8 +235,8 @@ export const projectsData: Project[] = [
     imageUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5ME74Y9FSC8A2dB6LXSFaQ3RtCWNv4rEOsy9KZw", 
     videoUrl: null,
     techStack: [
-      { name: "Premiere Pro", url: "/icons/pr.svg" },
-      { name: "After Effects", url: "/icons/ae.svg" },
+      { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
+      { name: "After Effects", url: "/icons/adobe-aftereffects.png" },
     ],
     linkUrl:
       "https://iktiologi-indonesia.or.id/home",
@@ -248,9 +248,9 @@ export const projectsData: Project[] = [
     company: "Short Movie Competition 2021",
     desc: "Masyarakat Iktiologi Indonesia (MII) atau Indonesian Ichthyological Society (IIS) adalah organisasi profesional nirlaba yang menaungi individu yang memiliki perhatian pada ikan (Pisces), termasuk peneliti, dosen, mahasiswa, LSM, pengusaha, hingga pemerhati ikan. Organisasi ini didirikan pada 6 Juni 2000 di Bogor, disahkan melalui Akta Notaris No. 01 tanggal 1 Desember 2014, dan resmi diakui berdasarkan SK Menteri Hukum dan HAM No. AHU-0000019.AH.01.Tahun 2015 tanggal 6 Januari 2015. Logo MII menampilkan ikan coelacanth (Latimeria menadoensis), yang dijuluki fosil hidup karena keberadaannya di bumi sudah ada sejak 400 juta tahun lalu, jauh sebelum dinosaurus.",
     imageUrl: "/images/impersepsi.png", 
-    videoUrl: "https://www.youtube.com/embed/LVvpWqG3vbM?si=2Th3PLJZ-hCjsfAc",
+    videoUrl: "https://www.youtube.com/embed/LVvpWqG3vbM?si=2Th3PLJZ-hCjsfAc?autoplay=1&mute=1&loop=1&playlist=uA0eLmYm9w4",
     techStack: [
-      { name: "Premiere Pro", url: "/icons/pr.svg" },
+      { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
     ],
     linkUrl:
       "https://youtu.be/LVvpWqG3vbM",
@@ -258,17 +258,121 @@ export const projectsData: Project[] = [
   {
     id : "15",
     type: "Videography",
-    title: "Impersepsi",
-    company: "Short Movie Competition 2021",
-    desc: "Masyarakat Iktiologi Indonesia (MII) atau Indonesian Ichthyological Society (IIS) adalah organisasi profesional nirlaba yang menaungi individu yang memiliki perhatian pada ikan (Pisces), termasuk peneliti, dosen, mahasiswa, LSM, pengusaha, hingga pemerhati ikan. Organisasi ini didirikan pada 6 Juni 2000 di Bogor, disahkan melalui Akta Notaris No. 01 tanggal 1 Desember 2014, dan resmi diakui berdasarkan SK Menteri Hukum dan HAM No. AHU-0000019.AH.01.Tahun 2015 tanggal 6 Januari 2015. Logo MII menampilkan ikan coelacanth (Latimeria menadoensis), yang dijuluki fosil hidup karena keberadaannya di bumi sudah ada sejak 400 juta tahun lalu, jauh sebelum dinosaurus.",
-    imageUrl: "/images/impersepsi.png", 
-    videoUrl: "https://www.youtube.com/embed/LVvpWqG3vbM?si=2Th3PLJZ-hCjsfAc",
+    title: "Teaser ABTS 2023",
+    company: "ABTS 2023",
+    desc: "Sanctuary🌟 Tak terasa banyak cerita yang sudah kita rangkai diluar tempat kita dulu tertawa bersama. Apa yang menjadi cerita kita dapat menjadi pelajaran bagi mereka yang masih berjuang mencari cita. Saatnya kita pulang bersama, menghabiskan waktu, dan merangkai lagi satu kisah disini. Aku tunggu kehadiranmu🚂🕵🏼🐾",
+    imageUrl: "/images/abts2023.png", 
+    videoUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEe1PluXtPhxp4qm2n3z1BJR7rHGCZkILQlwWd",
     techStack: [
-      { name: "Premiere Pro", url: "/icons/pr.svg" },
-      { name: "After Effects", url: "/icons/ae.svg" },
+      { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
+      { name: "After Effects", url: "/icons/adobe-aftereffects.png" },
     ],
     linkUrl:
-      "https://iktiologi-indonesia.or.id/home",
+      "https://www.instagram.com/reel/CnEvlr7KVMs/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+  },
+  {
+    id : "16",
+    type: "Videography",
+    title: "Company Profile EM UB 2022",
+    company: "EM UB 2023",
+    desc: "test",
+    imageUrl: "/images/comprof22.png", 
+    videoUrl: "https://www.youtube.com/embed/JyMG21kkOVM?autoplay=1&mute=1&loop=1&playlist=uA0eLmYm9w4",
+    techStack: [
+      { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
+    ],
+    linkUrl:
+      "https://www.youtube.com/embed/JyMG21kkOVM",
+  },
+  {
+    id : "17",
+    type: "Videography",
+    title: "Company Profile EM UB 2023",
+    company: "EM UB 2023",
+    desc: "test",
+    imageUrl: "/images/comprof22.png", 
+    videoUrl: "https://www.youtube.com/embed/uA0eLmYm9w4?si=ZbShfnK9ZeqHNcLW?autoplay=1&mute=1&loop=1&playlist=uA0eLmYm9w4",
+    techStack: [
+      { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
+      { name: "After Effects", url: "/icons/adobe-aftereffects.png" },
+    ],
+    linkUrl:
+      "https://www.youtube.com/embed/uA0eLmYm9w4",
+  },
+  {
+    id : "18",
+    type: "Videography",
+    title: "Memanggil",
+    company: "TEDx Universitas Brawijaya 2024",
+    desc: "test",
+    imageUrl: "/images/p1v3.png", 
+    videoUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEIYmRCaoSAXDVwpEZxYuM8B3Q7eqNdH9jgrLm",
+    techStack: [
+      { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
+      { name: "After Effects", url: "/icons/adobe-aftereffects.png" },
+    ],
+    linkUrl:
+      "https://www.instagram.com/reel/DCMKhxZSPZA/?utm_source=ig_embed&amp;utm_campaign=loading",
+  },
+  {
+    id : "18",
+    type: "Videography",
+    title: "Terpanggil",
+    company: "TEDx Universitas Brawijaya 2024",
+    desc: "test",
+    imageUrl: "/images/p1v5.png", 
+    videoUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEEZrRMeWsbVvtF60NLHkYacUJx1wgo2XZ98m7",
+    techStack: [
+      { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
+      { name: "After Effects", url: "/icons/adobe-aftereffects.png" },
+    ],
+    linkUrl:
+      "https://www.instagram.com/reel/DCWCQYbSfhY/?utm_source=ig_embed&amp;utm_campaign=loading",
+  },
+  {
+    id : "19",
+    type: "Videography",
+    title: "Terperangkap",
+    company: "TEDx Universitas Brawijaya 2024",
+    desc: "test",
+    imageUrl: "/images/p2v2.png", 
+    videoUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEFGvxltugSb4tjvwoPeG1IyLdWH9krngTUOuJ",
+    techStack: [
+      { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
+      { name: "After Effects", url: "/icons/adobe-aftereffects.png" },
+    ],
+    linkUrl:
+      "https://www.instagram.com/reel/DD4QVgWSf7U/?utm_source=ig_embed&amp;utm_campaign=loading",
+  },
+  {
+    id : "20",
+    type: "Videography",
+    title: "Terperangkap",
+    company: "TEDx Universitas Brawijaya 2024",
+    desc: "test",
+    imageUrl: "/images/p2v3.png", 
+    videoUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEh7toYoZ4KJagULNtvTVS8AXP9Wk1xm3FiBcu",
+    techStack: [
+      { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
+      { name: "After Effects", url: "/icons/adobe-aftereffects.png" },
+    ],
+    linkUrl:
+      "https://www.instagram.com/reel/DEKOEQlzQfc/?utm_source=ig_embed&amp;utm_campaign=loading",
+  },
+  {
+    id : "21",
+    type: "Videography",
+    title: "Aftermovie TEDx UB 2024",
+    company: "TEDx Universitas Brawijaya 2024",
+    desc: "test",
+    imageUrl: "/images/tedafmov.png", 
+    videoUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEGiotz6RnVeQIjO0mZrytKaz5XYPoD8b4Ulqf",
+    techStack: [
+      { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
+      { name: "After Effects", url: "/icons/adobe-aftereffects.png" },
+    ],
+    linkUrl:
+      "https://www.instagram.com/reel/DOIyUvEj85Y/?utm_source=ig_embed&amp;utm_campaign=loading",
   },
   
 ];
