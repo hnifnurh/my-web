@@ -2,70 +2,73 @@
 import { useState, useEffect } from 'react';
 import { Project } from "../lib/dataTypes";
 
-export const useSwitchCards = (cardData: Project[], initialCount: number = 10, initialInterval: number = 500, rotationInterval: number = 10000) => {
-    const [activeCards, setActiveCards] = useState<Array<{id: number, dataIndex: number, key: number}>>([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [completingCardIds, setCompletingCardIds] = useState<number[]>([]);
-    const [isInitialPhase, setIsInitialPhase] = useState(true);
+export const useSwitchCards = (
+  cardData: Project[], 
+  initialCount: number = 10, 
+  initialInterval: number = 500, 
+  rotationInterval: number = 10000
+) => {
+  const [activeCards, setActiveCards] = useState<Array<{id: number, dataIndex: number, key: number}>>([]);
+  const [completingCardIds, setCompletingCardIds] = useState<number[]>([]);
+  const [rotationCounter, setRotationCounter] = useState(0);
 
-    useEffect(() => {
-        if (cardData.length === 0) return;
+  useEffect(() => {
+    if (cardData.length === 0) return;
 
-        const interval = setInterval(() => {
-            if (isInitialPhase) {
-                // Initial phase: add cards one by one up to the initialCount
-                if (activeCards.length < initialCount) {
-                    const newDataIndex = activeCards.length % cardData.length;
-                    
-                    setActiveCards(prev => [
-                        ...prev,
-                        {
-                            id: Date.now() + Math.random(),
-                            dataIndex: newDataIndex,
-                            key: Date.now()
-                        }
-                    ]);
-                    
-                    // Jika sudah mencapai initialCount, masuk ke rotation phase
-                    if (activeCards.length + 1 === initialCount) {
-                        setIsInitialPhase(false);
-                    }
-                }
-            } else {
-                // Rotation phase: replace the oldest card with a new one
-                if (activeCards.length > 0) {
-                    const oldestCard = activeCards[0];
-                    const newDataIndex = (currentIndex + 1) % cardData.length;
-                    
-                    // Tandai kartu yang akan dihilangkan
-                    setCompletingCardIds(prev => [...prev, oldestCard.id]);
-                    
-                    // Setelah animasi selesai, ganti dengan kartu baru
-                    setTimeout(() => {
-                        setActiveCards(current => {
-                            const filtered = current.filter(card => card.id !== oldestCard.id);
-                            return [
-                                ...filtered,
-                                {
-                                    id: Date.now() + Math.random(),
-                                    dataIndex: newDataIndex,
-                                    key: Date.now()
-                                }
-                            ];
-                        });
-                        
-                        // Hapus dari completingCardIds setelah selesai
-                        setCompletingCardIds(prev => prev.filter(id => id !== oldestCard.id));
-                        
-                        // Update current index untuk kartu berikutnya
-                        setCurrentIndex(prev => (prev + 1) % cardData.length);
-                    }, 1000);
-                }
+    // Initial phase: add cards until reaching initialCount
+    if (activeCards.length < initialCount) {
+      const timer = setTimeout(() => {
+        const newDataIndex = activeCards.length % cardData.length;
+        setActiveCards(prev => [
+          ...prev,
+          {
+            id: Date.now() + Math.random(),
+            dataIndex: newDataIndex,
+            key: Date.now()
+          }
+        ]);
+      }, initialInterval);
+
+      return () => clearTimeout(timer);
+    }
+
+    // Rotation phase: start replacing cards
+    const rotationTimer = setInterval(() => {
+      if (activeCards.length === 0) return;
+
+      // Get the oldest card to remove
+      const oldestCard = activeCards[0];
+      
+      // Mark card for completion animation
+      setCompletingCardIds(prev => [...prev, oldestCard.id]);
+      
+      // After animation, replace with new card
+      setTimeout(() => {
+        const newDataIndex = (rotationCounter + initialCount) % cardData.length;
+        
+        setActiveCards(prev => {
+          const newCards = prev.slice(1); // Remove oldest
+          return [
+            ...newCards,
+            {
+              id: Date.now() + Math.random(),
+              dataIndex: newDataIndex,
+              key: Date.now()
             }
-        }, isInitialPhase ? initialInterval : rotationInterval);
+          ];
+        });
+        
+        // Remove from completing list
+        setCompletingCardIds(prev => prev.filter(id => id !== oldestCard.id));
+        
+        // Update rotation counter
+        setRotationCounter(prev => prev + 1);
+      }, 1000);
+      
+    }, rotationInterval);
 
-        return () => clearInterval(interval);
-    }, [isInitialPhase, activeCards, currentIndex, cardData, initialCount, initialInterval, rotationInterval]);
+    return () => clearInterval(rotationTimer);
+  }, [activeCards, cardData, initialCount, initialInterval, rotationInterval, rotationCounter]);
 
-    return { activeCards, completingCardIds };
+  return { activeCards, completingCardIds };
 };

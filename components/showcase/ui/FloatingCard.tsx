@@ -18,15 +18,24 @@ function FloatingCard({
 }) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(true);
+  const [dimensions, setDimensions] = useState({ width: 256, height: 320 }); // Default size
   const cardRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>(0);
+  const resizeObserverRef = useRef<ResizeObserver | null>(null);
   
   // Gunakan ref untuk velocity agar bisa diakses di animation frame
   const velocityRef = useRef({ x: 0, y: 0 });
   const positionRef = useRef({ x: 0, y: 0 });
   
-  const cardWidth = 256;
-  const cardHeight = 320;
+  // Fungsi untuk mendapatkan ukuran kartu
+  const updateDimensions = useCallback(() => {
+    if (cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        setDimensions({ width: rect.width, height: rect.height });
+      }
+    }
+  }, []);
 
   // Fungsi untuk mendapatkan posisi acak yang tidak overlap
   const getRandomNonOverlappingPosition = useCallback(() => {
@@ -34,28 +43,34 @@ function FloatingCard({
     let attempts = 0;
     
     while (attempts < maxAttempts) {
-      const x = Math.random() * (window.innerWidth - cardWidth - 40) + 20;
-      const y = Math.random() * (window.innerHeight - cardHeight - 40) + 20;
+      const x = Math.random() * (window.innerWidth - dimensions.width - 40) + 20;
+      const y = Math.random() * (window.innerHeight - dimensions.height - 40) + 20;
       
       const isOverlap = activeCardPositions.some(otherCard => 
         x < otherCard.x + otherCard.width &&
-        x + cardWidth > otherCard.x &&
+        x + dimensions.width > otherCard.x &&
         y < otherCard.y + otherCard.height &&
-        y + cardHeight > otherCard.y
+        y + dimensions.height > otherCard.y
       );
       
       if (!isOverlap) return { x, y };
       attempts++;
     }
     
+    // Fallback jika tidak menemukan posisi yang tidak overlap
     return {
-      x: Math.random() * (window.innerWidth - cardWidth),
-      y: Math.random() * (window.innerHeight - cardHeight)
+      x: Math.random() * (window.innerWidth - dimensions.width),
+      y: Math.random() * (window.innerHeight - dimensions.height)
     };
-  }, [cardWidth, cardHeight]);
+  }, [dimensions.width, dimensions.height]);
 
   // Animation loop dengan requestAnimationFrame
   const animate = useCallback(() => {
+    if (dimensions.width === 0 || dimensions.height === 0) {
+      animationRef.current = requestAnimationFrame(animate);
+      return;
+    }
+
     // Update position dengan velocity terbaru
     setPosition(prev => {
       let newX = prev.x + velocityRef.current.x;
@@ -64,26 +79,33 @@ function FloatingCard({
       // Update ref position
       positionRef.current = { x: newX, y: newY };
 
-      // Bounce off edges
-      if (newX <= 20 || newX >= window.innerWidth - cardWidth - 20) {
-        velocityRef.current.x = -velocityRef.current.x * 0.8;
-        newX = Math.max(20, Math.min(window.innerWidth - cardWidth - 20, newX));
+      // Boundary check dengan viewport
+      if (newX <= 0) {
+        velocityRef.current.x = Math.abs(velocityRef.current.x) * 0.8;
+        newX = 0;
+      } else if (newX >= window.innerWidth - dimensions.width) {
+        velocityRef.current.x = -Math.abs(velocityRef.current.x) * 0.8;
+        newX = window.innerWidth - dimensions.width;
       }
-      if (newY <= 20 || newY >= window.innerHeight - cardHeight - 20) {
-        velocityRef.current.y = -velocityRef.current.y * 0.8;
-        newY = Math.max(20, Math.min(window.innerHeight - cardHeight - 20, newY));
+      
+      if (newY <= 0) {
+        velocityRef.current.y = Math.abs(velocityRef.current.y) * 0.8;
+        newY = 0;
+      } else if (newY >= window.innerHeight - dimensions.height) {
+        velocityRef.current.y = -Math.abs(velocityRef.current.y) * 0.8;
+        newY = window.innerHeight - dimensions.height;
       }
 
       return { x: newX, y: newY };
     });
 
     animationRef.current = requestAnimationFrame(animate);
-  }, [cardWidth, cardHeight]);
+  }, [dimensions.width, dimensions.height]);
 
   // Efek gravitasi ke tengah
   const applyGravity = useCallback(() => {
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+    const centerX = window.innerWidth / 2 - dimensions.width / 2;
+    const centerY = window.innerHeight / 2 - dimensions.height / 2;
     
     const distanceX = centerX - positionRef.current.x;
     const distanceY = centerY - positionRef.current.y;
@@ -97,23 +119,52 @@ function FloatingCard({
     velocityRef.current.y += forceY;
     
     // Batasi kecepatan maksimum
-    const maxSpeed = 0.2;
+    const maxSpeed = 5;
     const speed = Math.sqrt(velocityRef.current.x * velocityRef.current.x + velocityRef.current.y * velocityRef.current.y);
     if (speed > maxSpeed) {
       velocityRef.current.x = (velocityRef.current.x / speed) * maxSpeed;
       velocityRef.current.y = (velocityRef.current.y / speed) * maxSpeed;
     }
+  }, [dimensions.width, dimensions.height]);
+
+  useEffect(() => {
+    // Setup ResizeObserver untuk memantau perubahan ukuran
+    if (cardRef.current) {
+      resizeObserverRef.current = new ResizeObserver(entries => {
+        for (let entry of entries) {
+          const { width, height } = entry.contentRect;
+          if (width > 0 && height > 0) {
+            setDimensions({ width, height });
+          }
+        }
+      });
+      
+      resizeObserverRef.current.observe(cardRef.current);
+    }
+    
+    return () => {
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+      }
+    };
   }, []);
 
   useEffect(() => {
-    // Inisialisasi posisi
+    // Inisialisasi posisi setelah kita memiliki dimensi
+    if (dimensions.width === 0 || dimensions.height === 0) return;
+    
     const { x: initialX, y: initialY } = getRandomNonOverlappingPosition();
     
     setPosition({ x: initialX, y: initialY });
     positionRef.current = { x: initialX, y: initialY };
     
     // Tambahkan ke daftar aktif
-    activeCardPositions.push({ x: initialX, y: initialY, width: cardWidth, height: cardHeight });
+    activeCardPositions.push({ 
+      x: initialX, 
+      y: initialY, 
+      width: dimensions.width, 
+      height: dimensions.height 
+    });
     
     // Velocity awal random
     velocityRef.current = {
@@ -138,7 +189,7 @@ function FloatingCard({
       );
       if (index > -1) activeCardPositions.splice(index, 1);
     };
-  }, [getRandomNonOverlappingPosition, animate, applyGravity, cardWidth, cardHeight]);
+  }, [getRandomNonOverlappingPosition, animate, applyGravity, dimensions]);
 
   // Handle completion
   useEffect(() => {
@@ -168,7 +219,7 @@ function FloatingCard({
         x: { duration: 0 },
         y: { duration: 0 }
       }}
-      className="absolute w-64 h-80"
+      className="absolute"
       style={{
         left: 0,
         top: 0,
