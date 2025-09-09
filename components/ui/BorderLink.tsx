@@ -12,7 +12,7 @@ interface UnderLinkProps {
 const UnderLink: React.FC<UnderLinkProps> = ({ href, children, external, className }) => {
   const baseClass = `
     hover:border-transparent hover:bg-black hover:text-white 
-    active:border-transparent active:bg-black active:text-white 
+    focus:border-transparent focus:bg-black focus:text-white 
     transition-colors
   `;
 

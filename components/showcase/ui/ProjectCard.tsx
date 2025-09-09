@@ -46,16 +46,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
     }
   }, [isHovered, project.videoUrl, videoType]);
 
+  // Handler untuk mobile (tap/click)
+  const handleMobileInteraction = () => {
+    if (window.innerWidth < 768) { // Mobile breakpoint
+      setIsHovered(prev => !prev);
+    }
+  };
+
   return (
     <button
-      onClick={onClick}
-      className="space-y-3 text-left focus:outline-none w-full"
+      onClick={() => {
+        handleMobileInteraction();
+        if (onClick) onClick();
+      }}
+      className="space-y-3 text-left focus:outline-none w-full group"
+      onFocus={() => setIsHovered(true)}
+      onBlur={() => setIsHovered(false)}
     >
       <motion.div
-        className="relative w-56 aspect-[3/2] overflow-hidden cursor-pointer mx-auto"
+        className="relative w-40 md:w-64 aspect-[3/2] overflow-hidden cursor-pointer mx-auto"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        whileHover={{ scale: 1.02 }}
+        whileHover={{ scale: window.innerWidth >= 768 ? 1.02 : 1 }}
         transition={{ duration: 1, ease: "easeInOut" }}
         style={{
           filter: isHovered ? "drop-shadow(0 0 20px #FEFEFE)" : "none",
@@ -100,15 +112,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
             {!isVideoLoaded && (
               <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
                 <div className="animate-pulse">
-                  <div className="w-8 h-8 bg-gray-600 rounded-full"></div>
+                  <div className="w-6 h-6 md:w-10 md:h-10 bg-gray-600 rounded-full"></div>
                 </div>
               </div>
             )}
 
             {/* PLAY ICON OVERLAY UNTUK KEDUA TIPE VIDEO */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 active:opacity-100 transition-opacity duration-300">
-              <div className="w-12 h-12 bg-black/60 rounded-full flex items-center justify-center transform transition-transform duration-300 hover:scale-110 active:scale-110">
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-focus:opacity-100 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="w-8 h-8 md:w-14 md:h-14 bg-black/60 rounded-full flex items-center justify-center transform transition-transform duration-300 group-hover:scale-110 group-focus:scale-110">
+                <svg className="w-4 h-4 md:w-7 md:h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
@@ -120,7 +132,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
             src={project.imageUrl}
             alt={project.title}
             className="w-full h-full object-cover"
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: window.innerWidth >= 768 ? 1.1 : 1 }}
             transition={{ duration: 1, ease: "easeInOut" }}
             onLoad={() => setIsVideoLoaded(true)}
           />
@@ -136,18 +148,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
 
         {/* Bottom left corner - Always visible title */}
         <motion.div
-          className="absolute bottom-4 left-4 text-white pointer-events-none"
+          className="absolute bottom-2 left-2 md:bottom-3 md:left-3 text-white pointer-events-none"
           initial={{ opacity: 1 }}
           animate={{ opacity: isHovered ? 0 : 1 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-          <h4 className="text-sm font-medium drop-shadow-lg">
+          <h4 className="text-xs md:text-base font-medium drop-shadow-lg">
             {project.title}
           </h4>
         </motion.div>
       </motion.div>
 
-      {/* Text content outside card - shows on hover */}
+      {/* Text content outside card - shows on hover/focus */}
       <motion.div
         className="text-white"
         initial={{ opacity: 0, y: 10 }}
@@ -161,9 +173,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
           delay: isHovered ? 0.15 : 0,
         }}
       >
-        <p className="text-sm font-bold">{project.title}</p>
-        <p className="text-xs text-gray-300 mb-1">{project.company}</p>
-        <p className="text-[10px] text-gray-400">
+        <p className="text-xs md:text-base font-bold">{project.title}</p>
+        <p className="text-[10px] md:text-sm text-gray-300 mb-1">{project.company}</p>
+        <p className="text-[9px] md:text-[11px] text-gray-400">
           {project.videoUrl ? 
             (videoType === 'youtube' ? "Watch on YouTube" : "Watch video") 
             : "View project"

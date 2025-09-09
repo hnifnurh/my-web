@@ -347,8 +347,8 @@ export const projectsData: Project[] = [
   {
     id : "20",
     type: "Videography",
-    title: "Terperangkap",
-    company: "TEDx Universitas Brawijaya 2024",
+    title: "Terperdaya",
+    company: "TEDx Universitas Brawijaya 2025",
     desc: "test",
     imageUrl: "/images/p2v3.png", 
     videoUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEh7toYoZ4KJagULNtvTVS8AXP9Wk1xm3FiBcu",
