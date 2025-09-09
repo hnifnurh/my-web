@@ -336,7 +336,7 @@ export const projectsData: Project[] = [
     company: "TEDx Universitas Brawijaya 2024",
     desc: "test",
     imageUrl: "/images/p2v2.png", 
-    videoUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEFGvxltugSb4tjvwoPeG1IyLdWH9krngTUOuJ",
+    videoUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEh7toYoZ4KJagULNtvTVS8AXP9Wk1xm3FiBcu",
     techStack: [
       { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
       { name: "After Effects", url: "/icons/adobe-aftereffects.png" },

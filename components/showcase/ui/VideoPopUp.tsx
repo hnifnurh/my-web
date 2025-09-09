@@ -17,7 +17,6 @@ export default function VideoPopUp({ project, onClose, isVisible }: VideoPopUpPr
     if (isVisible) {
       setShouldRender(true);
     } else {
-      // Tunggu animasi selesai sebelum menghapus komponen dari DOM
       const timer = setTimeout(() => setShouldRender(false), 300);
       return () => clearTimeout(timer);
     }

@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef, useCallback } from "react";
 
-// Pindahkan ke luar component agar tidak re-initialized setiap render
 const activeCardPositions: Array<{x: number, y: number, width: number, height: number}> = [];
 
 function FloatingCard({ 
@@ -13,7 +12,7 @@ function FloatingCard({
 }: { 
   children: React.ReactNode;
   onComplete: () => void;
-  cardId: string; // ✅ Ubah dari number ke string
+  cardId: string; 
   shouldComplete?: boolean;
 }) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -28,11 +27,9 @@ function FloatingCard({
   const velocityRef = useRef({ x: 0, y: 0 });
   const positionRef = useRef({ x: 0, y: 0 });
   
-  // ✅ Pastikan semua calculations hanya di client
   useEffect(() => {
     setIsMounted(true);
-    // Set default dimensions setelah mount
-    setDimensions({ width: 224, height: 280 }); // Sesuaikan dengan ukuran card yang sebenarnya
+    setDimensions({ width: 224, height: 280 }); 
   }, []);
 
   const updateDimensions = useCallback(() => {
@@ -199,7 +196,6 @@ function FloatingCard({
     }
   }, [shouldComplete, onComplete]);
 
-  // ✅ Render placeholder selama belum mounted
   if (!isMounted) {
     return (
       <div className="absolute opacity-0">

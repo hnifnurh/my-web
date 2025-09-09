@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import FooterNav from "@/components/ui/FooterNav";
 import Menu from "@/components/Menu";
 import Particles from "@/components/showcase/ui/ParticlesBackground";
@@ -10,17 +10,18 @@ import ProjectCard from "@/components/showcase/ui/ProjectCard";
 import VideoPopUp from "@/components/showcase/ui/VideoPopUp";
 import WidePopUp from "@/components/showcase/ui/WidePopUp";
 import { Project } from "@/lib/dataTypes";
+import CategoryDropdown from "@/components/showcase/ui/CategoryDropdown";
 
 export default function ShowcasePageDesktop() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>("SHOW ALL");
   
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Pindahkan hook setelah state mount dan gunakan empty array selama SSR
   const { activeCards, completingCardIds } = useSwitchCards(
     isMounted ? projectsData : [], 
     10, 
@@ -28,16 +29,24 @@ export default function ShowcasePageDesktop() {
     10000
   );
   
-  // Ubah type cardId dari number ke string
+  const filteredActiveCards = useMemo(() => {
+    if (selectedCategory === "SHOW ALL") {
+      return activeCards;
+    }
+    
+    return activeCards.filter(card => {
+      const project = projectsData[card.dataIndex];
+      return project.type === selectedCategory;
+    });
+  }, [activeCards, selectedCategory]);
+
   const handleCardComplete = (cardId: string) => {
-    // Logic untuk menghapus kartu dari state jika diperlukan
   };
 
   const handleProjectClick = (project: Project) => {
     setSelectedProject(project);
   };
 
-  // Jangan render apapun selama SSR
   if (!isMounted) {
     return null;
   }
@@ -58,28 +67,36 @@ export default function ShowcasePageDesktop() {
 
         <div className="z-10 pointer-events-none">
           <div className="absolute inset-0 w-full h-full pointer-events-auto">
-            {activeCards.map(card => (
-              <FloatingCard
-                key={card.key}
-                cardId={card.id}  // Sekarang string
-                onComplete={() => handleCardComplete(card.id)}
-                shouldComplete={completingCardIds.includes(card.id)}
-              >
-                <ProjectCard 
-                  project={projectsData[card.dataIndex]} 
-                  onClick={() => handleProjectClick(projectsData[card.dataIndex])}
-                />
-              </FloatingCard>
-            ))}
+            {filteredActiveCards.map(card => {
+              const project = projectsData[card.dataIndex];
+              return (
+                <FloatingCard
+                  key={card.key}
+                  cardId={card.id}
+                  onComplete={() => handleCardComplete(card.id)}
+                  shouldComplete={completingCardIds.includes(card.id)}
+                >
+                  <ProjectCard 
+                    project={project} 
+                    onClick={() => handleProjectClick(project)}
+                  />
+                </FloatingCard>
+              );
+            })}
           </div>
         </div>
       </div>
 
-      <div className="relative z-20 flex justify-start items-start pointer-events-none">
+      <div className="relative z-20 flex flex-row justify-between items-start pointer-events-auto">
         <img
           src="/icons/logo-white.svg"
           alt="logo"
           className="h-16 w-16 lg:h-16 lg:w-16 pointer-events-auto"
+        />
+        <CategoryDropdown
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
+          projects={projectsData}
         />
       </div>
 

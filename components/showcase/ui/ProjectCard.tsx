@@ -14,7 +14,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Fungsi untuk deteksi jenis video
   const getVideoType = (url: string): 'youtube' | 'uploadthing' | 'other' => {
     if (url.includes('youtube.com') || url.includes('youtu.be')) {
       return 'youtube';
@@ -24,7 +23,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
     return 'other';
   };
 
-  // Fungsi untuk extract YouTube ID
   const getYouTubeId = (url: string): string => {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     const match = url.match(regExp);
@@ -33,7 +31,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
 
   const videoType = project.videoUrl ? getVideoType(project.videoUrl) : null;
 
-  // Handle video play/pause on hover (hanya untuk non-YouTube)
   useEffect(() => {
     if (videoRef.current && project.videoUrl && videoType !== 'youtube') {
       if (isHovered) {
@@ -43,7 +40,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
       } else {
         videoRef.current.pause();
         if (!videoRef.current.loop) {
-          videoRef.current.currentTime = 0; // Reset ke awal jika tidak loop
+          videoRef.current.currentTime = 0;
         }
       }
     }
@@ -67,7 +64,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
         {project.videoUrl ? (
           <div className="relative w-full h-full">
             {videoType === 'youtube' ? (
-              // YouTube - Tampilkan thumbnail
               <>
                 <img
                   src={`https://img.youtube.com/vi/${getYouTubeId(project.videoUrl)}/maxresdefault.jpg`}
@@ -81,7 +77,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
                 />
               </>
             ) : (
-              // UploadThing.io atau video langsung
               <>
                 <video
                   ref={videoRef}
@@ -121,7 +116,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
 
           </div>
         ) : (
-          // Hanya image (tidak ada video)
           <motion.img
             src={project.imageUrl}
             alt={project.title}
