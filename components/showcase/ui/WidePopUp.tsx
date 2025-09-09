@@ -32,7 +32,7 @@ export default function WidePopUp({ project, onClose, isVisible }: WidePopUpProp
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
           onClick={onClose}
         >
           <motion.div
@@ -51,22 +51,27 @@ export default function WidePopUp({ project, onClose, isVisible }: WidePopUpProp
               ✕
             </button>
 
-            {/* Left content - Text section */}
-            <div className="flex-1 p-8 flex flex-col justify-between bg-gradient-to-r from-white/15 to-gray-50/15 backdrop-blur-md border-r border-white/10">
+            {/* Left content - Text section - DIUBAH GRADIENT */}
+            <div className="flex-1 p-8 flex flex-col justify-between bg-gradient-to-br from-white/10 to-gray-100/10 backdrop-blur-xl border-r border-white/10">
               <div>
                 <h2 className="text-xl font-bold text-white drop-shadow-md">{project.title}</h2>
-                <h3 className="text-lg font-semibold text-red-400 drop-shadow-md">{project.company}</h3>
+                <h3 className="text-lg font-semibold text-[#FF5768] drop-shadow-md">{project.company}</h3>
                 
                 <div className="my-2 border-t border-white/20"></div>
                 
-                <p className="text-white/90 text-xs leading-relaxed drop-shadow-md">{project.desc}</p>
+                {/* DESC */}
+                <div className="overflow-y-auto max-h-[100px] flex-shrink">
+                  <p className="text-white/90 text-sm leading-relaxed drop-shadow-md">
+                    {project.desc}
+                  </p>
+                </div>
                 
                 <div className="my-2 border-t border-white/20"></div>
                 
-                <h4 className="text-lg font-semibold text-white mb-3 drop-shadow-md">Tech Stack</h4>
+                <h4 className="text-lg font-semibold text-white/80 mb-3 uppercase tracking-wide drop-shadow-md">Tech Stack</h4>
                 <div className="flex gap-3 flex-wrap">
                   {project.techStack?.map((tech, i) => (
-                    <div key={i} className="flex flex-col items-center backdrop-blur-sm bg-black/20 p-2">
+                    <div key={i} className="flex flex-col items-center backdrop-blur-sm bg-white/10 p-2">
                       <img
                         src={tech.url}
                         alt={tech.name}
