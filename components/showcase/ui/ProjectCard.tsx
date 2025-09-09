@@ -14,18 +14,40 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Handle video play/pause on hover
+  // Fungsi untuk deteksi jenis video
+  const getVideoType = (url: string): 'youtube' | 'uploadthing' | 'other' => {
+    if (url.includes('youtube.com') || url.includes('youtu.be')) {
+      return 'youtube';
+    } else if (url.includes('ufs.sh') || url.includes('uploadthing.com')) {
+      return 'uploadthing';
+    }
+    return 'other';
+  };
+
+  // Fungsi untuk extract YouTube ID
+  const getYouTubeId = (url: string): string => {
+    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[7].length === 11) ? match[7] : '';
+  };
+
+  const videoType = project.videoUrl ? getVideoType(project.videoUrl) : null;
+
+  // Handle video play/pause on hover (hanya untuk non-YouTube)
   useEffect(() => {
-    if (videoRef.current && project.videoUrl) {
+    if (videoRef.current && project.videoUrl && videoType !== 'youtube') {
       if (isHovered) {
         videoRef.current.play().catch(error => {
           console.log("Autoplay prevented:", error);
         });
       } else {
         videoRef.current.pause();
+        if (!videoRef.current.loop) {
+          videoRef.current.currentTime = 0; // Reset ke awal jika tidak loop
+        }
       }
     }
-  }, [isHovered, project.videoUrl]);
+  }, [isHovered, project.videoUrl, videoType]);
 
   return (
     <button
@@ -44,20 +66,40 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
       >
         {project.videoUrl ? (
           <div className="relative w-full h-full">
-            <video
-              ref={videoRef}
-              src={project.videoUrl}
-              className="w-full h-full object-cover"
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              onLoadedData={() => setIsVideoLoaded(true)}
-              style={{
-                opacity: isVideoLoaded ? 1 : 0,
-                transition: 'opacity 0.3s ease-in-out'
-              }}
-            />
+            {videoType === 'youtube' ? (
+              // YouTube - Tampilkan thumbnail
+              <>
+                <img
+                  src={`https://img.youtube.com/vi/${getYouTubeId(project.videoUrl)}/maxresdefault.jpg`}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                  onLoad={() => setIsVideoLoaded(true)}
+                  onError={(e) => {
+                    e.currentTarget.src = project.imageUrl;
+                    setIsVideoLoaded(true);
+                  }}
+                />
+              </>
+            ) : (
+              // UploadThing.io atau video langsung
+              <>
+                <video
+                  ref={videoRef}
+                  src={project.videoUrl}
+                  className="w-full h-full object-cover hide-video-controls"
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  controls={false}
+                  onLoadedData={() => setIsVideoLoaded(true)}
+                  style={{
+                    opacity: isVideoLoaded ? 1 : 0,
+                    transition: 'opacity 0.3s ease-in-out'
+                  }}
+                />
+              </>
+            )}
             
             {/* Loading placeholder */}
             {!isVideoLoaded && (
@@ -68,22 +110,25 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
               </div>
             )}
 
-            {/* Play icon overlay */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-              <div className="w-12 h-12 bg-black/50 rounded-full flex items-center justify-center">
+            {/* PLAY ICON OVERLAY UNTUK KEDUA TIPE VIDEO */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+              <div className="w-12 h-12 bg-black/60 rounded-full flex items-center justify-center transform transition-transform duration-300 hover:scale-110">
                 <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
             </div>
+
           </div>
         ) : (
+          // Hanya image (tidak ada video)
           <motion.img
             src={project.imageUrl}
             alt={project.title}
-            className="w-full h-full object-cover pointer-events-none"
+            className="w-full h-full object-cover"
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 1, ease: "easeInOut" }}
+            onLoad={() => setIsVideoLoaded(true)}
           />
         )}
 
@@ -125,7 +170,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
         <p className="text-sm font-bold">{project.title}</p>
         <p className="text-xs text-gray-300 mb-1">{project.company}</p>
         <p className="text-[10px] text-gray-400">
-          {project.videoUrl ? "Watch video" : "View project"}
+          {project.videoUrl ? 
+            (videoType === 'youtube' ? "Watch on YouTube" : "Watch video") 
+            : "View project"
+          }
         </p>
       </motion.div>
     </button>
