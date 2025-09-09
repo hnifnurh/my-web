@@ -83,7 +83,7 @@ export default function WidePopUp({ project, onClose, isVisible }: WidePopUpProp
                 href={project.linkUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-block px-8 py-3 rounded-full bg-white/20 hover:bg-white/30 transition-all text-white tracking-wider font-medium text-center shadow-md hover:shadow-lg backdrop-blur-sm border border-white/20"
+                className="mt-8 inline-block px-8 py-3 rounded-full bg-white/20 hover:bg-white/30 transition-all text-white tracking-wider font-medium text-center shadow-md hover:shadow-lg active:shadow-lg backdrop-blur-sm border border-white/20"
               >
                 VISIT THE SITE
               </a>

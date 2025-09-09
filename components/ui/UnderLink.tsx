@@ -14,6 +14,7 @@ const UnderLink: React.FC<UnderLinkProps> = ({ href, children, external, classNa
     inline-flex items-center px-1 text-black bg-transparent 
     border-b border-black-500 w-fit
     hover:border-transparent hover:bg-black hover:text-white 
+    active:border-transparent active:bg-black active:text-white 
     transition-colors
   `;
 
