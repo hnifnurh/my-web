@@ -10,7 +10,7 @@ const robotoMono = Roboto_Mono({
 export const metadata: Metadata = {
   title: "Home",
   description: "Hanif Nahwan's portfolio",
-  icons: {
+  icons : {
     icon: "/icons/logo-white.svg",
   },
   keywords: [
