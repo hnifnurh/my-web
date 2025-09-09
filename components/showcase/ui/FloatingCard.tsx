@@ -2,23 +2,24 @@
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef, useCallback } from "react";
 
+// Pindahkan ke luar component agar tidak re-initialized setiap render
 const activeCardPositions: Array<{x: number, y: number, width: number, height: number}> = [];
 
 function FloatingCard({ 
   children, 
   onComplete, 
-  cardId: _cardId,
+  cardId,
   shouldComplete = false
 }: { 
   children: React.ReactNode;
   onComplete: () => void;
-  cardId: number;
+  cardId: string; // ✅ Ubah dari number ke string
   shouldComplete?: boolean;
 }) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(true);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 }); // ✅ Mulai dari 0
-  const [isMounted, setIsMounted] = useState(false); // ✅ Track mount state
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [isMounted, setIsMounted] = useState(false);
   
   const cardRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>(0);
@@ -30,11 +31,12 @@ function FloatingCard({
   // ✅ Pastikan semua calculations hanya di client
   useEffect(() => {
     setIsMounted(true);
-    setDimensions({ width: 256, height: 320 }); // ✅ Set default setelah mount
+    // Set default dimensions setelah mount
+    setDimensions({ width: 224, height: 280 }); // Sesuaikan dengan ukuran card yang sebenarnya
   }, []);
 
   const updateDimensions = useCallback(() => {
-    if (cardRef.current && isMounted) { // ✅ Cek isMounted
+    if (cardRef.current && isMounted) {
       const rect = cardRef.current.getBoundingClientRect();
       if (rect.width > 0 && rect.height > 0) {
         setDimensions({ width: rect.width, height: rect.height });
@@ -43,7 +45,7 @@ function FloatingCard({
   }, [isMounted]);
 
   const getRandomNonOverlappingPosition = useCallback(() => {
-    if (!isMounted) return { x: 0, y: 0 }; // ✅ Return default jika belum mounted
+    if (!isMounted || typeof window === 'undefined') return { x: 0, y: 0 };
     
     const maxAttempts = 50;
     let attempts = 0;
@@ -70,7 +72,7 @@ function FloatingCard({
   }, [dimensions.width, dimensions.height, isMounted]);
 
   const animate = useCallback(() => {
-    if (!isMounted || dimensions.width === 0 || dimensions.height === 0) {
+    if (!isMounted || typeof window === 'undefined' || dimensions.width === 0 || dimensions.height === 0) {
       animationRef.current = requestAnimationFrame(animate);
       return;
     }
@@ -104,7 +106,7 @@ function FloatingCard({
   }, [dimensions.width, dimensions.height, isMounted]);
 
   const applyGravity = useCallback(() => {
-    if (!isMounted) return; // ✅ Skip jika belum mounted
+    if (!isMounted || typeof window === 'undefined') return;
     
     const centerX = window.innerWidth / 2 - dimensions.width / 2;
     const centerY = window.innerHeight / 2 - dimensions.height / 2;
@@ -129,7 +131,7 @@ function FloatingCard({
   }, [dimensions.width, dimensions.height, isMounted]);
 
   useEffect(() => {
-    if (!isMounted) return; // ✅ Skip jika belum mounted
+    if (!isMounted) return;
     
     if (cardRef.current) {
       resizeObserverRef.current = new ResizeObserver(entries => {

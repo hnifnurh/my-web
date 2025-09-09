@@ -5,12 +5,13 @@ import { Project } from "@/lib/dataTypes";
 type WidePopUpProps = {
   project: Project;
   onClose: () => void;
+  isVisible: boolean;
 };
 
 export default function WidePopUp({ project, onClose }: WidePopUpProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="relative w-[1300px] max-w-[95%] h-[650px] bg-gradient-to-br from-white/10 to-gray-100/10 backdrop-blur-xl border border-white/20 overflow-hidden shadow-2xl flex flex-col md:flex-row">
+      <div className="relative w-[1000px] max-w-[95%] h-[500px] bg-gradient-to-br from-white/10 to-gray-100/10 backdrop-blur-xl border border-white/20 overflow-hidden shadow-2xl flex flex-col md:flex-row">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -22,23 +23,23 @@ export default function WidePopUp({ project, onClose }: WidePopUpProps) {
         {/* Left content - Text section */}
         <div className="flex-1 p-8 flex flex-col justify-between bg-gradient-to-r from-white/15 to-gray-50/15 backdrop-blur-md border-r border-white/10">
           <div>
-            <h2 className="text-3xl font-bold text-white drop-shadow-md">{project.title}</h2>
-            <h3 className="text-xl font-semibold text-red-400 mt-2 drop-shadow-md">{project.company}</h3>
+            <h2 className="text-xl font-bold text-white drop-shadow-md">{project.title}</h2>
+            <h3 className="text-lg font-semibold text-red-400 drop-shadow-md">{project.company}</h3>
             
-            <div className="my-6 border-t border-white/20"></div>
+            <div className="my-2 border-t border-white/20"></div>
             
-            <p className="text-white/90 text-sm leading-relaxed drop-shadow-md">{project.desc}</p>
+            <p className="text-white/90 text-xs leading-relaxed drop-shadow-md">{project.desc}</p>
             
-            <div className="my-6 border-t border-white/20"></div>
+            <div className="my-2 border-t border-white/20"></div>
             
             <h4 className="text-lg font-semibold text-white mb-3 drop-shadow-md">Tech Stack</h4>
             <div className="flex gap-3 flex-wrap">
               {project.techStack?.map((tech, i) => (
-                <div key={i} className="flex flex-col items-center backdrop-blur-sm bg-black/20 rounded-lg p-2">
+                <div key={i} className="flex flex-col items-center backdrop-blur-sm bg-black/20 p-2">
                   <img
                     src={tech.url}
                     alt={tech.name}
-                    className="w-10 h-10 object-contain mb-1 filter drop-shadow-md"
+                    className="w-5 h-5 object-contain mb-1 filter drop-shadow-md"
                   />
                   <span className="text-xs text-white/80">{tech.name}</span>
                 </div>

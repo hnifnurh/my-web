@@ -1,16 +1,18 @@
 "use client";
 
 import { Project } from "@/lib/dataTypes";
+import { motion } from "motion/react";
 
 type VideoPopUpProps = {
   project: Project;
   onClose: () => void;
+  isVisible: boolean;
 };
 
 export default function VideoPopUp({ project, onClose }: VideoPopUpProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="relative w-[885px] max-w-[95%] bg-gradient-to-br from-white/10 to-gray-100/10 backdrop-blur-xl border border-white/20 overflow-hidden shadow-2xl">
+      <div className="relative w-[660px] max-w-[95%] bg-gradient-to-br from-white/10 to-gray-100/10 backdrop-blur-xl border border-white/20 overflow-hidden shadow-2xl">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -52,8 +54,8 @@ export default function VideoPopUp({ project, onClose }: VideoPopUpProps) {
           <div id="namedesc" className="flex-1 flex flex-col pr-6">
             {/* Title and subtitle */}
             <div>
-              <h2 className="text-2xl font-bold text-white drop-shadow-md">{project.title}</h2>
-              <h3 className="text-lg font-bold text-[#FF5768] mt-1 drop-shadow-md">{project.company}</h3>
+              <h2 className="text-lg font-bold text-white drop-shadow-md">{project.title}</h2>
+              <h3 className="text-md font-bold text-[#FF5768] mt-1 drop-shadow-md">{project.company}</h3>
             </div>
 
             {/* Description */}
@@ -67,13 +69,13 @@ export default function VideoPopUp({ project, onClose }: VideoPopUpProps) {
             <h4 className="text-sm font-semibold text-white/80 uppercase tracking-wide drop-shadow-md">Tech Stack</h4>
             <div className="flex gap-3 flex-wrap">
               {project.techStack?.map((tech, i) => (
-                <div key={i} className="flex flex-col items-center backdrop-blur-sm bg-black/20 rounded-lg p-2">
+                <div key={i} className="flex flex-col items-center backdrop-blur-sm bg-grey/20 p-2">
                   <img
                     src={tech.url}
                     alt={tech.name}
                     className="w-8 h-8 object-contain mb-1 filter drop-shadow-md"
                   />
-                  <span className="text-xs text-white/80">{tech.name}</span>
+                  <span className="text-[10px] text-white/80">{tech.name}</span>
                 </div>
               ))}
             </div>

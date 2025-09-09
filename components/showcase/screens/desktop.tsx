@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FooterNav from "@/components/ui/FooterNav";
 import Menu from "@/components/Menu";
 import Particles from "@/components/showcase/ui/ParticlesBackground";
@@ -14,15 +14,33 @@ import { Project } from "@/lib/dataTypes";
 export default function ShowcasePageDesktop() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const { activeCards, completingCardIds } = useSwitchCards(projectsData, 10, 500, 10000);
+  const [isMounted, setIsMounted] = useState(false);
   
-  const handleCardComplete = (cardId: number) => {
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Pindahkan hook setelah state mount dan gunakan empty array selama SSR
+  const { activeCards, completingCardIds } = useSwitchCards(
+    isMounted ? projectsData : [], 
+    10, 
+    500, 
+    10000
+  );
+  
+  // Ubah type cardId dari number ke string
+  const handleCardComplete = (cardId: string) => {
     // Logic untuk menghapus kartu dari state jika diperlukan
   };
 
   const handleProjectClick = (project: Project) => {
     setSelectedProject(project);
   };
+
+  // Jangan render apapun selama SSR
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <main className="relative min-h-screen flex flex-col justify-between bg-[#1A1C20] px-20 py-16 overflow-hidden">
@@ -43,7 +61,7 @@ export default function ShowcasePageDesktop() {
             {activeCards.map(card => (
               <FloatingCard
                 key={card.key}
-                cardId={card.id}
+                cardId={card.id}  // Sekarang string
                 onComplete={() => handleCardComplete(card.id)}
                 shouldComplete={completingCardIds.includes(card.id)}
               >
@@ -79,11 +97,13 @@ export default function ShowcasePageDesktop() {
           <VideoPopUp
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
+            isVisible={!!selectedProject}
           />
         ) : (
           <WidePopUp
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
+            isVisible={!!selectedProject}
           />
         )
       )}

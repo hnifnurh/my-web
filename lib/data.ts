@@ -246,9 +246,9 @@ export const projectsData: Project[] = [
     type: "Videography",
     title: "Impersepsi",
     company: "Short Movie Competition 2021",
-    desc: "Masyarakat Iktiologi Indonesia (MII) atau Indonesian Ichthyological Society (IIS) adalah organisasi profesional nirlaba yang menaungi individu yang memiliki perhatian pada ikan (Pisces), termasuk peneliti, dosen, mahasiswa, LSM, pengusaha, hingga pemerhati ikan. Organisasi ini didirikan pada 6 Juni 2000 di Bogor, disahkan melalui Akta Notaris No. 01 tanggal 1 Desember 2014, dan resmi diakui berdasarkan SK Menteri Hukum dan HAM No. AHU-0000019.AH.01.Tahun 2015 tanggal 6 Januari 2015. Logo MII menampilkan ikan coelacanth (Latimeria menadoensis), yang dijuluki fosil hidup karena keberadaannya di bumi sudah ada sejak 400 juta tahun lalu, jauh sebelum dinosaurus.",
+    desc: "test",
     imageUrl: "/images/impersepsi.png", 
-    videoUrl: "https://www.youtube.com/embed/LVvpWqG3vbM?si=2Th3PLJZ-hCjsfAc?autoplay=1&mute=1&loop=1&playlist=uA0eLmYm9w4",
+    videoUrl: "https://www.youtube.com/embed/LVvpWqG3vbM?autoplay=1&mute=1&loop=1",
     techStack: [
       { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
     ],
@@ -277,7 +277,7 @@ export const projectsData: Project[] = [
     company: "EM UB 2023",
     desc: "test",
     imageUrl: "/images/comprof22.png", 
-    videoUrl: "https://www.youtube.com/embed/JyMG21kkOVM?autoplay=1&mute=1&loop=1&playlist=uA0eLmYm9w4",
+    videoUrl: "https://www.youtube.com/embed/JyMG21kkOVM?autoplay=1&mute=1&loop=1",
     techStack: [
       { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
     ],
@@ -291,7 +291,7 @@ export const projectsData: Project[] = [
     company: "EM UB 2023",
     desc: "test",
     imageUrl: "/images/comprof22.png", 
-    videoUrl: "https://www.youtube.com/embed/uA0eLmYm9w4?si=ZbShfnK9ZeqHNcLW?autoplay=1&mute=1&loop=1&playlist=uA0eLmYm9w4",
+    videoUrl: "https://www.youtube.com/embed/uA0eLmYm9w4?autoplay=1&mute=1&loop=1",
     techStack: [
       { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
       { name: "After Effects", url: "/icons/adobe-aftereffects.png" },

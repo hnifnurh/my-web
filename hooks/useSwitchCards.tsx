@@ -1,5 +1,5 @@
 // hooks/useSwitchCards.ts
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Project } from "../lib/dataTypes";
 
 export const useSwitchCards = (
@@ -8,67 +8,105 @@ export const useSwitchCards = (
   initialInterval: number = 500, 
   rotationInterval: number = 10000
 ) => {
-  const [activeCards, setActiveCards] = useState<Array<{id: number, dataIndex: number, key: number}>>([]);
-  const [completingCardIds, setCompletingCardIds] = useState<number[]>([]);
+  const [activeCards, setActiveCards] = useState<Array<{id: string, dataIndex: number, key: string}>>([]);
+  const [completingCardIds, setCompletingCardIds] = useState<string[]>([]);
   const [rotationCounter, setRotationCounter] = useState(0);
+  const [usedIndices, setUsedIndices] = useState<number[]>([]);
+  const [isClient, setIsClient] = useState(false);
+  
+  const idCounter = useRef(0);
 
   useEffect(() => {
-    if (cardData.length === 0) return;
+    setIsClient(true);
+  }, []);
 
-    // Initial phase: add cards until reaching initialCount
+  const getRandomUnusedIndex = useCallback(() => {
+    if (usedIndices.length >= cardData.length) {
+      setUsedIndices([]);
+      return Math.floor(Math.random() * cardData.length);
+    }
+    
+    const availableIndices = cardData
+      .map((_, index) => index)
+      .filter(index => !usedIndices.includes(index));
+    
+    if (availableIndices.length === 0) {
+      return Math.floor(Math.random() * cardData.length);
+    }
+    
+    const randomIndex = Math.floor(Math.random() * availableIndices.length);
+    return availableIndices[randomIndex];
+  }, [cardData.length, usedIndices]);
+
+  useEffect(() => {
+    if (!isClient || cardData.length === 0) return;
+
     if (activeCards.length < initialCount) {
       const timer = setTimeout(() => {
-        const newDataIndex = activeCards.length % cardData.length;
+        const newDataIndex = getRandomUnusedIndex();
+        idCounter.current += 1;
+        
         setActiveCards(prev => [
           ...prev,
           {
-            id: Date.now() + Math.random(),
+            id: `card-${idCounter.current}`,
             dataIndex: newDataIndex,
-            key: Date.now()
+            key: `key-${idCounter.current}`
           }
         ]);
+        
+        setUsedIndices(prev => [...prev, newDataIndex]);
       }, initialInterval);
 
       return () => clearTimeout(timer);
     }
 
-    // Rotation phase: start replacing cards
     const rotationTimer = setInterval(() => {
       if (activeCards.length === 0) return;
 
-      // Get the oldest card to remove
       const oldestCard = activeCards[0];
       
-      // Mark card for completion animation
       setCompletingCardIds(prev => [...prev, oldestCard.id]);
       
-      // After animation, replace with new card
       setTimeout(() => {
-        const newDataIndex = (rotationCounter + initialCount) % cardData.length;
+        const newDataIndex = getRandomUnusedIndex();
+        idCounter.current += 1;
         
         setActiveCards(prev => {
-          const newCards = prev.slice(1); // Remove oldest
+          const newCards = prev.slice(1); 
           return [
             ...newCards,
             {
-              id: Date.now() + Math.random(),
+              id: `card-${idCounter.current}`,
               dataIndex: newDataIndex,
-              key: Date.now()
+              key: `key-${idCounter.current}`
             }
           ];
         });
         
-        // Remove from completing list
+        setUsedIndices(prev => {
+          const filtered = prev.filter(index => index !== oldestCard.dataIndex);
+          return [...filtered, newDataIndex];
+        });
+        
         setCompletingCardIds(prev => prev.filter(id => id !== oldestCard.id));
         
-        // Update rotation counter
         setRotationCounter(prev => prev + 1);
       }, 1000);
       
     }, rotationInterval);
 
     return () => clearInterval(rotationTimer);
-  }, [activeCards, cardData, initialCount, initialInterval, rotationInterval, rotationCounter]);
+  }, [
+    activeCards, 
+    cardData, 
+    initialCount, 
+    initialInterval, 
+    rotationInterval, 
+    rotationCounter, 
+    getRandomUnusedIndex,
+    isClient 
+  ]);
 
-  return { activeCards, completingCardIds };
+  return isClient ? { activeCards, completingCardIds } : { activeCards: [], completingCardIds: [] };
 };
