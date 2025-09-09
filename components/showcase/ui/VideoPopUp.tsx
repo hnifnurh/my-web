@@ -46,7 +46,7 @@ export default function VideoPopUp({ project, onClose, isVisible }: VideoPopUpPr
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 bg-red-500/90 hover:bg-red-600/90 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors backdrop-blur-sm"
+              className="absolute top-4 right-4 z-10 bg-red-500/90 hover:bg-red-600/90 active:bg-red-600/90 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors backdrop-blur-sm"
             >
               ✕
             </button>
@@ -119,7 +119,7 @@ export default function VideoPopUp({ project, onClose, isVisible }: VideoPopUpPr
                   href={project.linkUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block w-full px-8 py-3 rounded-full bg-white/20 hover:bg-white/30 transition-all text-white text-center tracking-wider font-medium shadow-md hover:shadow-lg backdrop-blur-sm border border-white/20"
+                  className="inline-block w-full px-8 py-3 rounded-full bg-white/20 hover:bg-white/30 active:bg-white/30 transition-all text-white text-center tracking-wider font-medium shadow-md hover:shadow-lg active:shadow-lg backdrop-blur-sm border border-white/20"
                 >
                   VISIT THE SITE
                 </a>

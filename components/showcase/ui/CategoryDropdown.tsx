@@ -53,7 +53,7 @@ export default function CategoryDropdown({
               <button
                 key={category}
                 className={`block w-full text-right px-4 py-1 text-sm transition-all ${
-                  selectedCategory="text-white hover:bg-white hover:text-black"
+                  selectedCategory="text-white hover:bg-white hover:text-black active:bg-white active:text-black"
                 }`}
                 onClick={() => {
                   onCategoryChange(category);
