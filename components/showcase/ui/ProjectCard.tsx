@@ -64,7 +64,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
       onBlur={() => setIsHovered(false)}
     >
       <motion.div
-        className="relative w-40 md:w-64 aspect-[3/2] overflow-hidden cursor-pointer mx-auto"
+        className="relative w-40 md:w-56 aspect-[3/2] overflow-hidden cursor-pointer mx-auto"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         whileHover={{ scale: window.innerWidth >= 768 ? 1.02 : 1 }}
