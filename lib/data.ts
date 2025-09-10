@@ -315,7 +315,7 @@ export const projectsData: Project[] = [
       "https://www.instagram.com/reel/DCMKhxZSPZA/?utm_source=ig_embed&amp;utm_campaign=loading",
   },
   {
-    id : "18",
+    id : "19",
     type: "Videography",
     title: "Terpanggil",
     company: "TEDx Universitas Brawijaya 2024",
@@ -330,7 +330,7 @@ export const projectsData: Project[] = [
       "https://www.instagram.com/reel/DCWCQYbSfhY/?utm_source=ig_embed&amp;utm_campaign=loading",
   },
   {
-    id : "19",
+    id : "20",
     type: "Videography",
     title: "Terperangkap",
     company: "TEDx Universitas Brawijaya 2024",
@@ -345,7 +345,7 @@ export const projectsData: Project[] = [
       "https://www.instagram.com/reel/DD4QVgWSf7U/?utm_source=ig_embed&amp;utm_campaign=loading",
   },
   {
-    id : "20",
+    id : "21",
     type: "Videography",
     title: "Terperdaya",
     company: "TEDx Universitas Brawijaya 2025",
@@ -360,7 +360,7 @@ export const projectsData: Project[] = [
       "https://www.instagram.com/reel/DEKOEQlzQfc/?utm_source=ig_embed&amp;utm_campaign=loading",
   },
   {
-    id : "21",
+    id : "22",
     type: "Videography",
     title: "Aftermovie TEDx UB 2024",
     company: "TEDx Universitas Brawijaya 2024",

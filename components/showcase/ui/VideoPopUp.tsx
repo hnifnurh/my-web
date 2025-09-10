@@ -62,7 +62,7 @@ export default function VideoPopUp({ project, onClose, isVisible }: VideoPopUpPr
                   allowFullScreen
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gray-800">
+                <div className="w-full h-full flex items-center justify-center bg-black">
                   <img
                     src={project.imageUrl}
                     alt={project.title}

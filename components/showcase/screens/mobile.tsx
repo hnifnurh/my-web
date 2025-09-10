@@ -23,7 +23,7 @@ export default function ShowcasePageMobile() {
     isMounted ? projectsData : [], 
     6, 
     500, 
-    10000
+    8000
   );
   
   const handleCardComplete = (cardId: string) => {
