@@ -52,7 +52,7 @@ export default function Home() {
             className="inline-flex items-center px-1 text-black bg-transparent 
               border-b border-black-500 w-fit
               hover:border-transparent hover:bg-black hover:text-white 
-              focus:border-transparent focus:bg-black focus:text-white 
+              active:border-transparent active:bg-black active:text-white 
               transition-colors"
             >
               hanif is open for commissioned work and collaboration.

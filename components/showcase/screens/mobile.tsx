@@ -95,7 +95,7 @@ export default function ShowcasePageMobile() {
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
             isVisible={!!selectedProject}
-          />
+        />
       )}
     </main>
   );

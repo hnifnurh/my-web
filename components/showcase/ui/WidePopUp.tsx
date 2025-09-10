@@ -46,13 +46,13 @@ export default function WidePopUp({ project, onClose, isVisible }: WidePopUpProp
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 bg-red-500/90 hover:bg-red-600/90 focus:bg-red-600/90 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors backdrop-blur-sm"
+              className="absolute top-4 right-4 z-10 bg-red-500/90 hover:bg-red-600/90 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors backdrop-blur-sm"
             >
               ✕
             </button>
 
             {/* Left content - Text section - DIUBAH GRADIENT */}
-            <div className="flex-1 p-8 flex flex-col justify-between bg-gradient-to-br from-white/10 to-gray-100/10 backdrop-blur-xl border-r border-white/10">
+            <div className="flex-1 p-8 flex flex-col justify-between border-r border-white/10">
               <div>
                 <h2 className="text-xl font-bold text-white drop-shadow-md">{project.title}</h2>
                 <h3 className="text-lg font-semibold text-[#FF5768] drop-shadow-md">{project.company}</h3>
@@ -88,7 +88,7 @@ export default function WidePopUp({ project, onClose, isVisible }: WidePopUpProp
                 href={project.linkUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-block px-8 py-3 rounded-full bg-white/20 hover:bg-white/30 focus:bg-white/30 transition-all text-white tracking-wider font-medium text-center shadow-md hover:shadow-lg focus:shadow-lg backdrop-blur-sm border border-white/20"
+                className="mt-8 inline-block px-8 py-3 rounded-full bg-white/20 transition-all text-white tracking-wider font-medium text-center shadow-md hover:shadow-lg border border-white/20"
               >
                 VISIT THE SITE
               </a>

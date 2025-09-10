@@ -59,7 +59,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
         handleMobileInteraction();
         if (onClick) onClick();
       }}
-      className="space-y-3 text-left focus:outline-none w-full group"
+      className="space-y-3 text-left active:outline-none w-full group"
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
     >

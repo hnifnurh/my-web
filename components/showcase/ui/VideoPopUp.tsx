@@ -46,7 +46,7 @@ export default function VideoPopUp({ project, onClose, isVisible }: VideoPopUpPr
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 bg-red-500/90 hover:bg-red-600/90 focus:bg-red-600/90 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors backdrop-blur-sm"
+              className="absolute top-4 right-4 z-10 bg-red-500/90 hover:bg-red-600/90 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors backdrop-blur-sm"
             >
               ✕
             </button>
@@ -80,7 +80,7 @@ export default function VideoPopUp({ project, onClose, isVisible }: VideoPopUpPr
             </div>
 
             {/* Content section - GRADIENT SAMA PERSIS */}
-            <div className="flex flex-row p-8 space-y-6 bg-gradient-to-br from-white/10 to-gray-100/10 backdrop-blur-xl">
+            <div className="flex flex-row p-8 space-y-6 overflow-hidden">
               <div id="namedesc" className="flex-1 flex flex-col pr-6">
                 {/* Title and subtitle */}
                 <div>
@@ -116,13 +116,13 @@ export default function VideoPopUp({ project, onClose, isVisible }: VideoPopUpPr
             </div>
 
             {/* Button section - GRADIENT SAMA PERSIS */}
-            <div className="pb-8 px-8 bg-gradient-to-br from-white/10 to-gray-100/10 backdrop-blur-xl">
+            <div className="pb-8 px-8">
               <div className="pt-4">
                 <a
                   href={project.linkUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block w-full px-8 py-3 rounded-full bg-white/20 hover:bg-white/30 focus:bg-white/30 transition-all text-white text-center tracking-wider font-medium shadow-md hover:shadow-lg active:shadow-lg backdrop-blur-sm border border-white/20"
+                  className="inline-block w-full px-8 py-3 rounded-full bg-white/20 hover:bg-white/30 transition-all text-white text-center tracking-wider font-medium shadow-md hover:shadow-lg active:shadow-lg backdrop-blur-sm border border-white/20"
                 >
                   VISIT THE SITE
                 </a>

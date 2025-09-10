@@ -19,12 +19,12 @@ const BoringButton: React.FC<BoringButtonProps> = ({
   
   const getColorClasses = () => {
     if (variant === "light") {
-      return "border-black text-black hover:bg-black hover:text-white focus:bg-black focus:text-white";
+      return "border-black text-black hover:bg-black hover:text-white active:bg-black active:text-white";
     } else if (variant === "dark") {
-      return "border-white text-white hover:bg-white hover:text-black focus:bg-white focus:text-black";
+      return "border-white text-white hover:bg-white hover:text-black active:bg-white active:text-black";
     } else {
-      return `border-black text-black hover:bg-black hover:text-white focus:bg-black focus:text-white
-              dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black dark:focus:bg-white dark:focus:text-black`;
+      return `border-black text-black hover:bg-black hover:text-white active:bg-black active:text-white
+              dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black dark:active:bg-white dark:active:text-black`;
     }
   };
   return (
