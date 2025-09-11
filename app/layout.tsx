@@ -8,7 +8,7 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "Fellthriver",
   description: "Hanif Nahwan's portfolio",
   icons : {
     icon: "/icons/logo-white.svg",
@@ -19,16 +19,21 @@ export const metadata: Metadata = {
     "Hanif",
     "Hanif N2",
     "Hanif NN",
+    "Website Hanif",
+    "hanifnurh xyz",
+    "hanifnurh.xyz",
+    "hanif ub",
+    "hanif nfbs",
   ],
   openGraph: {
     type: "website",
-    title: "Home",
+    title: "Fellthriver",
     description: "Hanif Nahwan's portfolio",
     siteName: "Hanif Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Home",
+    title: "Fellthiver",
     description: "Hanif Nahwan's portfolio",
     creator: "@__notforyou__",
   },
