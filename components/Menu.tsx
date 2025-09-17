@@ -86,7 +86,7 @@ const Menu = ({ isOpen, onClose }: MenuProps) => {
   const logoSrc = isDarkBackground ? "/icons/logo-white.svg" : "/icons/logo-black.svg";
   const baseClass = isDarkBackground 
     ? "inline-flex items-center px-1 py-1 text-white bg-transparent border border-transparent hover:bg-white hover:text-black active:bg-white active:text-black transition-colors"
-    : "inline-flex items-center px-1 py-1 text-black bg-transparent border border-transparent hover:bg-black hover:text-white active:bg-white active:text-black transition-colors";
+    : "inline-flex items-center px-1 py-1 text-black bg-transparent border border-transparent hover:bg-black hover:text-white active:bg-black active:text-white transition-colors";
   const buttonVariant = isDarkBackground ? "dark" : "light";
 
   return (

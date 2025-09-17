@@ -18,7 +18,7 @@ export const projectsData: Project[] = [
   {
     id : "1",
     type: "3D",
-    title: "Bank Jembut",
+    title: "Bank J****t",
     company: "Personal Project",
     desc: "Bank ini adalah bank yang melayani semua kebutuhan finansial Anda dengan sentuhan humor dan keunikan.",
     imageUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5ME5YVCoOlfSM8OdFWzYR9eZcAjUQKu5CHht7wn",
@@ -333,10 +333,10 @@ export const projectsData: Project[] = [
     id : "20",
     type: "Videography",
     title: "Terperangkap",
-    company: "TEDx Universitas Brawijaya 2024",
+    company: "TEDx Universitas Brawijaya 2025",
     desc: "test",
     imageUrl: "/images/p2v2.png", 
-    videoUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEh7toYoZ4KJagULNtvTVS8AXP9Wk1xm3FiBcu",
+    videoUrl: "https://a26kr599dm.ufs.sh/f/lqDWJCaxK5MEFGvxltugSb4tjvwoPeG1IyLdWH9krngTUOuJ",
     techStack: [
       { name: "Premiere Pro", url: "/icons/adobe-premierepro.png" },
       { name: "After Effects", url: "/icons/adobe-aftereffects.png" },
