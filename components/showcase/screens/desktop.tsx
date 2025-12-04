@@ -22,24 +22,20 @@ export default function ShowcasePageDesktop() {
     setIsMounted(true);
   }, []);
 
+  const filteredDataSource = useMemo(() => {
+    if (selectedCategory === "SHOW ALL") {
+      return projectsData;
+    }
+    return projectsData.filter(project => project.type === selectedCategory);
+  }, [selectedCategory]);
+
   const { activeCards, completingCardIds } = useSwitchCards(
-    isMounted ? projectsData : [], 
+    isMounted ? filteredDataSource : [], 
     10, 
     500, 
     10000
   );
   
-  const filteredActiveCards = useMemo(() => {
-    if (selectedCategory === "SHOW ALL") {
-      return activeCards;
-    }
-    
-    return activeCards.filter(card => {
-      const project = projectsData[card.dataIndex];
-      return project.type === selectedCategory;
-    });
-  }, [activeCards, selectedCategory]);
-
   const handleCardComplete = (cardId: string) => {
   };
 
@@ -67,8 +63,11 @@ export default function ShowcasePageDesktop() {
 
         <div className="z-10 pointer-events-none">
           <div className="absolute inset-0 w-full h-full pointer-events-auto">
-            {filteredActiveCards.map(card => {
-              const project = projectsData[card.dataIndex];
+            {activeCards.map(card => {
+              const project = filteredDataSource[card.dataIndex];
+              
+              if (!project) return null;
+
               return (
                 <FloatingCard
                   key={card.key}
@@ -108,7 +107,6 @@ export default function ShowcasePageDesktop() {
 
       {isMenuOpen && <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />}
 
-      {/* Render Popups berdasarkan jenis project */}
       {selectedProject && (
         selectedProject.videoUrl ? (
           <VideoPopUp

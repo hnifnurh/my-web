@@ -1,4 +1,3 @@
-// hooks/useSwitchCards.ts
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Project } from "../lib/dataTypes";
 
@@ -20,6 +19,13 @@ export const useSwitchCards = (
     setIsClient(true);
   }, []);
 
+  useEffect(() => {
+    setActiveCards([]);
+    setCompletingCardIds([]);
+    setRotationCounter(0);
+    setUsedIndices([]);
+  }, [cardData]);
+
   const getRandomUnusedIndex = useCallback(() => {
     if (usedIndices.length >= cardData.length) {
       setUsedIndices([]);
@@ -36,12 +42,12 @@ export const useSwitchCards = (
     
     const randomIndex = Math.floor(Math.random() * availableIndices.length);
     return availableIndices[randomIndex];
-  }, [cardData.length, usedIndices]);
+  }, [cardData, usedIndices]);
 
   useEffect(() => {
     if (!isClient || cardData.length === 0) return;
 
-    if (activeCards.length < initialCount) {
+    if (activeCards.length < initialCount && activeCards.length < cardData.length) {
       const timer = setTimeout(() => {
         const newDataIndex = getRandomUnusedIndex();
         idCounter.current += 1;

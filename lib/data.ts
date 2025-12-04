@@ -374,6 +374,21 @@ export const projectsData: Project[] = [
     linkUrl:
       "https://www.instagram.com/reel/DOIyUvEj85Y/?utm_source=ig_embed&amp;utm_campaign=loading",
   },
+  {
+    id : "23",
+    type: "Web Dev",
+    title: "Jaga Warga",
+    company: "Tugas Kuliah",
+    desc: "Adalah website yang diaptasi dari finalist juara Google Solution Challenge yaitu Apliksi Freya. Dengan beberapa fitur seperti community, chat, consultation, dan make a report. Menggunakan Laravel dan vite dibuat ecara monolitik.",
+    imageUrl: "/images/jaga-warga.png", 
+    videoUrl: "",
+    techStack: [
+      { name: "Laravel", url: "https://logospng.org/download/laravel/logo-laravel-icon-1024.png" },
+      { name: "Vite", url: "https://logospng.org/download/vite-js/vite-js-4096-logo.png" },
+    ],
+    linkUrl:
+      "https://jaga-warga-ebon.vercel.app/",
+  },
   
 ];
 

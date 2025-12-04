@@ -32,20 +32,22 @@ export default function Home() {
 
           <div className="relative w-[90%] md:w-5/6 flex flex-col py-10 text-sm sm:text-lg space-y-6">
             <p>
-              hanif is a designer and digital creative who has worked on a variety of projects, from independent explorations to collaborative productions. His works move between visual and digital spaces, taking shape in graphic design, photography, post-production, <Un>front-end development</Un>, mobile development, and <Un>UI/UX</Un> design.
+              Hanif is a technology and IT enthusiast, as well as a digital creative, with experience in designing and implementing user-focused digital solutions. 
+              He combines skills in <Un>web development</Un>, <Un>interface design</Un>, <Un>visual production</Un>, and <Un>front-end development</Un> to deliver 
+              practical and effective digital products.
             </p>
             <p>
               Beyond personal projects, Hanif has also contributed through collective initiatives and organizational work. 
-              Some of his experiences include collaborations with
-              <ULink href="https://www.instagram.com/em_ubofficial/"> EM UB</ULink>, 
+              Some of his experiences include collaborations with <ULink href="https://www.instagram.com/em_ubofficial/">EM UB</ULink>, 
               <ULink href="https://www.instagram.com/raja_brawijaya/">RAJA Brawijaya</ULink>, 
               <ULink href="https://www.instagram.com/p/Cxkn-k3rzqf/">GDSC</ULink>, 
               <ULink href="https://www.instagram.com/p/DBXvSjySXXU/">GDGoC</ULink>, 
               <ULink href="https://www.instagram.com/gdgcloudjakarta/">GDGCLOUDJAKARTA</ULink>, 
-              <ULink href="https://www.instagram.com/tedxuniversitasbrawijaya/">TEDx Brawijaya</ULink>, and others.
+              <ULink href="https://www.instagram.com/tedxuniversitasbrawijaya/">TEDx Brawijaya</ULink>
+              , and others.
             </p>
             <p>
-              hanif is currently being a <ULink href="">Media Creative lead at GDGoC.</ULink> <br />
+              Hanif is currently being a <ULink href="">Media Creative lead at GDGoC.</ULink> <br />
               Undergraduate of Information Technology, Brawijaya University, Designer, Programmer, UI/UX.
             </p>
             <p
@@ -55,7 +57,7 @@ export default function Home() {
               active:border-transparent active:bg-black active:text-white 
               transition-colors"
             >
-              hanif is open for commissioned work and collaboration.
+              hanif is open for commissioned work, collaboration, and creative-tech projects.
             </p>
           </div>
         </div>
