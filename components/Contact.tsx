@@ -27,7 +27,7 @@ export default function ComingSoon() {
 
                 <div className="email">
                     <p className="font-bold">Email</p>
-                    <BLink href="mailto:h4nifnhwn@gmail.com">h4nifnhwn@gmail.com</BLink>
+                    <BLink href="mailto:hanifnhwn@gmail.com">hanifnhwn@gmail.com</BLink>
                 </div>
 
                 <div className="contact">
