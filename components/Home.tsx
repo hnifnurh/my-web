@@ -33,7 +33,7 @@ export default function Home() {
           <div className="relative w-[90%] md:w-5/6 flex flex-col py-10 text-sm sm:text-lg space-y-6">
             <p>
               Hanif is a technology and IT enthusiast with a strong interest in building efficient, user-focused digital solutions. 
-              He combines technical skills in <Un>web development</Un>, <Un>data handling</Un>, <Un>interface design</Un>, and <Un>front-end technologies</Un> 
+              He combines technical skills in <Un>web development</Un>, <Un>data handling</Un>, <Un>interface design</Un>, and <Un>front-end technologies</Un>  
               to create practical, scalable, and impactful digital products.
             </p>
             <p>
