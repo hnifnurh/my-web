@@ -33,21 +33,21 @@ export default function Home() {
           <div className="relative w-[90%] md:w-5/6 flex flex-col py-10 text-sm sm:text-lg space-y-6">
             <p>
               Hanif is a technology and IT enthusiast with a strong interest in building efficient, user-focused digital solutions. 
-              He combines technical skills in <Un>web development</Un>, <Un>data handling</Un>, <Un>interface design</Un>, and <Un>front-end technologies</Un>  
+              He combines technical skills in <Un>web development</Un>, <Un>data handling</Un>, <Un>interface design</Un>, and <Un>front-end </Un>  
               to create practical, scalable, and impactful digital products.
             </p>
             <p>
               Beyond personal projects, Hanif has also contributed through collective initiatives and organizational work. 
               Some of his experiences include collaborations with <ULink href="https://www.instagram.com/em_ubofficial/">EM UB</ULink>, 
               <ULink href="https://www.instagram.com/raja_brawijaya/">RAJA Brawijaya</ULink>, 
-              <ULink href="https://www.instagram.com/p/Cxkn-k3rzqf/">GDSC</ULink>, 
               <ULink href="https://www.instagram.com/p/DBXvSjySXXU/">GDGoC</ULink>, 
               <ULink href="https://www.instagram.com/gdgcloudjakarta/">GDGCLOUDJAKARTA</ULink>, 
               <ULink href="https://www.instagram.com/tedxuniversitasbrawijaya/">TEDx Brawijaya</ULink>
+              <ULink href="https://www.instagram.com/therapspoint/">The Rapspoint</ULink>
               , and others.
             </p>
             <p>
-              Hanif is currently being a <ULink href="">Media Creative lead at GDGoC.</ULink> <br />
+              Hanif is currently working at <ULink href="">UI/UX at Rapspoint</ULink> <br />
               Undergraduate of Information Technology, Brawijaya University, Designer, Programmer, UI/UX.
             </p>
             <p
