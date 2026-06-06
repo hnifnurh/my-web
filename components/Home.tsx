@@ -42,7 +42,7 @@ export default function Home() {
               <ULink href="https://www.instagram.com/raja_brawijaya/">RAJA Brawijaya</ULink>, 
               <ULink href="https://www.instagram.com/p/DBXvSjySXXU/">GDGoC</ULink>, 
               <ULink href="https://www.instagram.com/gdgcloudjakarta/">GDGCLOUDJAKARTA</ULink>, 
-              <ULink href="https://www.instagram.com/tedxuniversitasbrawijaya/">TEDx Brawijaya</ULink>
+              <ULink href="https://www.instagram.com/tedxuniversitasbrawijaya/">TEDx Brawijaya</ULink>, 
               <ULink href="https://www.instagram.com/therapspoint/">The Rapspoint</ULink>
               , and others.
             </p>
